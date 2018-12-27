@@ -2,17 +2,32 @@ package com.example.shyakdas.recycleranimation;
 
 public class DataModel {
 
-    public long endTime;
-
-    public int timeRemaining;
-
     private String id;
 
-    private String name;
+    private String message;
 
-    public DataModel(String id, String name) {
+    private String type;
+
+    public DataModel(String id, String message, String type) {
         this.id = id;
-        this.name = name;
+        this.message = message;
+        this.type = type;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public String getId() {
@@ -21,13 +36,5 @@ public class DataModel {
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 }

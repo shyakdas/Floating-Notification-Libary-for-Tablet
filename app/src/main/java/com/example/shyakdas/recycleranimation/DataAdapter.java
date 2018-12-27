@@ -30,12 +30,6 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.AdapterViewHol
         mDataList = dataModels;
     }
 
-    public void remove(int position) {
-        if (position > -1) {
-            mDataList.remove(position);
-            notifyItemRemoved(position);
-        }
-    }
 
     @NonNull
     @Override
@@ -48,7 +42,7 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.AdapterViewHol
     public void onBindViewHolder(@NonNull final AdapterViewHolder adapterViewHolder,
                                  @SuppressLint("RecyclerView") final int position) {
         itemView = adapterViewHolder.itemView;
-        adapterViewHolder.bind(position);
+        adapterViewHolder.bind();
         setInAnimation(itemView, position);
     }
 
@@ -75,13 +69,16 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.AdapterViewHol
             mText = itemView.findViewById(R.id.text);
         }
 
-        public void bind(int position) {
-            mText.setText(mDataList.get(position).getName());
-            startTimer();
+        public void bind() {
+            int position = getAdapterPosition();
+            if (position >= 0 && position < mDataList.size() && mDataList.get(position) != null) {
+                mText.setText(mDataList.get(position).getMessage());
+                startTimer();
+            }
         }
 
         private void startTimer() {
-            timer = new CountDownTimer(6000, 1000) {
+            timer = new CountDownTimer(6000, 6000) {
                 @Override
                 public void onTick(long millisUntilFinished) {
                     Log.e(TAG, "millisUntilFinished==" + getAdapterPosition() + "time==" + millisUntilFinished);
