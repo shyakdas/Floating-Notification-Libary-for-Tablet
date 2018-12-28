@@ -14,7 +14,6 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-
     private ArrayList<DataModel> dataModels;
     private int position;
     private FloatNotificationViewModel viewModel;
@@ -38,7 +37,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void goToQueue() {
-
         new CountDownTimer(10000, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
