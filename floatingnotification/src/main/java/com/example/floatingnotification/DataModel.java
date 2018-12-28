@@ -1,4 +1,4 @@
-package com.example.shyakdas.recycleranimation;
+package com.example.floatingnotification;
 
 public class DataModel {
 
