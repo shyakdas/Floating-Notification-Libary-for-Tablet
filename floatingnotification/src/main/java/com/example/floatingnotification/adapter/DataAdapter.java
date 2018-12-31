@@ -36,7 +36,7 @@ public class DataAdapter extends RecyclerView.Adapter<NotificationViewHolder> {
     @Override
     public NotificationViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         return new NotificationViewHolder(LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.view_item, viewGroup, false),listener);
+                .inflate(R.layout.success_item, viewGroup, false), listener);
     }
 
     @Override

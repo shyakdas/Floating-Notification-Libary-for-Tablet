@@ -24,13 +24,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         dataModels = new ArrayList<>();
-        dataModels.add(new DataModel("1", "A", "Success"));
-        dataModels.add(new DataModel("2", "B", "Success"));
-        dataModels.add(new DataModel("3", "C", "Success"));
-        dataModels.add(new DataModel("4", "D", "Success"));
-        dataModels.add(new DataModel("5", "E", "Success"));
-        dataModels.add(new DataModel("6", "F", "Success"));
-        dataModels.add(new DataModel("7", "G", "Success"));
+        dataModels.add(new DataModel("1", "Selected user checked-in successfully to Meeting ID #34", "Success"));
+        dataModels.add(new DataModel("2", "Selected user checked-in successfully to Meeting ID #34", "Success"));
+        dataModels.add(new DataModel("3", "Selected user checked-in successfully to Meeting ID #34", "Success"));
+        dataModels.add(new DataModel("4", "Selected user checked-in successfully to Meeting ID #34", "Success"));
+        dataModels.add(new DataModel("5", "Selected user checked-in successfully to Meeting ID #34", "Success"));
+        dataModels.add(new DataModel("6", "Selected user checked-in successfully to Meeting ID #34", "Success"));
+        dataModels.add(new DataModel("7", "Selected user checked-in successfully to Meeting ID #34", "Success"));
         position = 0;
         viewModel = ViewModelProviders.of(this).get(FloatNotificationViewModel.class);
         goToQueue();

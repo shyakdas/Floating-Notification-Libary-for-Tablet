@@ -19,7 +19,7 @@ public class NotificationViewHolder extends RecyclerView.ViewHolder {
     public NotificationViewHolder(@NonNull View itemView, OnCloseListener listener) {
         super(itemView);
         onCloseListener = listener;
-        mText = itemView.findViewById(R.id.text);
+        mText = itemView.findViewById(R.id.message_text);
     }
 
     public void bind(DataModel dataModel) {
