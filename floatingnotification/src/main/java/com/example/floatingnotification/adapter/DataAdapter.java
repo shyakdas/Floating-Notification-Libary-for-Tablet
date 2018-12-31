@@ -9,29 +9,25 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
-import com.example.floatingnotification.Constant;
-import com.example.floatingnotification.DataModel;
 import com.example.floatingnotification.R;
 import com.example.floatingnotification.listener.OnCloseListener;
-import com.example.floatingnotification.viewholders.ConflictViewHolder;
-import com.example.floatingnotification.viewholders.FailedViewHolder;
-import com.example.floatingnotification.viewholders.SuccessViewHolder;
+import com.example.floatingnotification.models.DataModel;
+import com.example.floatingnotification.viewholders.MultipleNotificationViewHolder;
+import com.example.floatingnotification.viewholders.NotificationViewHolder;
+import com.example.floatingnotification.viewholders.SingleNotificationViewHolder;
 
 import java.util.ArrayList;
 
-import static com.example.floatingnotification.Constant.CONFLICT_INT;
-import static com.example.floatingnotification.Constant.FAILED_INT;
-import static com.example.floatingnotification.Constant.SUCCESS_INT;
+import static com.example.floatingnotification.Constants.MULTIPLE;
+import static com.example.floatingnotification.Constants.SINGLE;
 
-public class DataAdapter extends RecyclerView.Adapter {
+public class DataAdapter extends RecyclerView.Adapter<NotificationViewHolder> {
 
     private static final String TAG = DataAdapter.class.getName();
     private Context mContext;
     private ArrayList<DataModel> mDataList;
     private int lastPosition = -1;
     private OnCloseListener listener;
-    private View itemView;
-
 
     public DataAdapter(Context mContext, ArrayList<DataModel> dataModels, OnCloseListener itemListener) {
         this.mContext = mContext;
@@ -39,70 +35,34 @@ public class DataAdapter extends RecyclerView.Adapter {
         mDataList = dataModels;
     }
 
-
     @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int itemType) {
+    public NotificationViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int itemType) {
         switch (itemType) {
-            case SUCCESS_INT:
-                return new SuccessViewHolder(LayoutInflater.from(viewGroup.getContext())
-                        .inflate(R.layout.success_item, viewGroup, false), listener);
-
-            case FAILED_INT:
-                return new FailedViewHolder(LayoutInflater.from(viewGroup.getContext())
+            case SINGLE:
+                return new SingleNotificationViewHolder(LayoutInflater.from(viewGroup.getContext())
+                        .inflate(R.layout.failed_item, viewGroup, false), listener);
+            case MULTIPLE:
+                return new MultipleNotificationViewHolder(LayoutInflater.from(viewGroup.getContext())
                         .inflate(R.layout.failed_item, viewGroup, false), listener);
 
-            case CONFLICT_INT:
-                return new ConflictViewHolder(LayoutInflater.from(viewGroup.getContext())
-                        .inflate(R.layout.conflict_item, viewGroup, false), listener);
-
             default:
-                return new SuccessViewHolder(LayoutInflater.from(viewGroup.getContext())
-                        .inflate(R.layout.success_item, viewGroup, false), listener);
+                return new SingleNotificationViewHolder(LayoutInflater.from(viewGroup.getContext())
+                        .inflate(R.layout.failed_item, viewGroup, false), listener);
         }
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int position) {
-
-        switch (getItemViewType(position)) {
-            case SUCCESS_INT:
-                itemView = viewHolder.itemView;
-                ((SuccessViewHolder) viewHolder).bind(mDataList.get(position));
-                setInAnimation(itemView, position);
-                break;
-
-            case FAILED_INT:
-                itemView = viewHolder.itemView;
-                ((FailedViewHolder) viewHolder).bind(mDataList.get(position));
-                setInAnimation(itemView, position);
-                break;
-
-            case CONFLICT_INT:
-                itemView = viewHolder.itemView;
-                ((ConflictViewHolder) viewHolder).bind(mDataList.get(position));
-                setInAnimation(itemView, position);
-                break;
-        }
+    public void onBindViewHolder(@NonNull NotificationViewHolder notificationViewHolder, int position) {
+        notificationViewHolder.bind(mDataList.get(position));
+        setInAnimation(notificationViewHolder.itemView, position);
     }
+
 
     @Override
     public int getItemViewType(int position) {
-        if (mDataList.get(position).getType().equalsIgnoreCase(Constant.SUCCESS))
-            return SUCCESS_INT;
-
-        else if (mDataList.get(position).getType().equalsIgnoreCase(Constant.FAILED))
-
-            return FAILED_INT;
-
-        else if (mDataList.get(position).getType().equalsIgnoreCase(Constant.CONFLICT))
-
-            return CONFLICT_INT;
-
-        else
-            return SUCCESS_INT;
+        return mDataList.get(position).getContainerType();
     }
-
 
     private void setInAnimation(View viewToAnimate, int position) {
         if (position > lastPosition) {

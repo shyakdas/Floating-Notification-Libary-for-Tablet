@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import com.example.floatingnotification.adapter.DataAdapter;
 import com.example.floatingnotification.animator.SlideInOutRightItemAnimator;
 import com.example.floatingnotification.listener.OnCloseListener;
+import com.example.floatingnotification.models.DataModel;
 
 import java.util.ArrayList;
 

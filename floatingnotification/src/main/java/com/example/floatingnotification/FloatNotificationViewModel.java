@@ -3,13 +3,13 @@ package com.example.floatingnotification;
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.MutableLiveData;
+import android.os.CountDownTimer;
 import android.support.annotation.NonNull;
 
-import java.util.ArrayList;
+import com.example.floatingnotification.models.DataModel;
+
 import java.util.LinkedList;
 import java.util.Queue;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class FloatNotificationViewModel extends AndroidViewModel {
 
@@ -25,7 +25,6 @@ public class FloatNotificationViewModel extends AndroidViewModel {
         modelMutableLiveData = new MutableLiveData<>();
     }
 
-
     public MutableLiveData<DataModel> getModelMutableLiveData() {
         return modelMutableLiveData;
     }
@@ -36,11 +35,10 @@ public class FloatNotificationViewModel extends AndroidViewModel {
             pushToList();
 
     }
-    
+
     public void onClose() {
         count--;
         pushToList();
-
     }
 
     private final void pushToList() {
