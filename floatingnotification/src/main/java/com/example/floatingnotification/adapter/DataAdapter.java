@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
+import com.example.floatingnotification.Constant;
 import com.example.floatingnotification.DataModel;
 import com.example.floatingnotification.R;
 import com.example.floatingnotification.listener.OnCloseListener;
@@ -18,6 +19,10 @@ import com.example.floatingnotification.viewholders.SuccessViewHolder;
 
 import java.util.ArrayList;
 
+import static com.example.floatingnotification.Constant.CONFLICT_INT;
+import static com.example.floatingnotification.Constant.FAILED_INT;
+import static com.example.floatingnotification.Constant.SUCCESS_INT;
+
 public class DataAdapter extends RecyclerView.Adapter {
 
     private static final String TAG = DataAdapter.class.getName();
@@ -26,9 +31,7 @@ public class DataAdapter extends RecyclerView.Adapter {
     private int lastPosition = -1;
     private OnCloseListener listener;
     private View itemView;
-    private static final int SUCCESS = 101;
-    private static final int FAILED = 102;
-    private static final int CONFLICT = 103;
+
 
     public DataAdapter(Context mContext, ArrayList<DataModel> dataModels, OnCloseListener itemListener) {
         this.mContext = mContext;
@@ -41,15 +44,15 @@ public class DataAdapter extends RecyclerView.Adapter {
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int itemType) {
         switch (itemType) {
-            case SUCCESS:
+            case SUCCESS_INT:
                 return new SuccessViewHolder(LayoutInflater.from(viewGroup.getContext())
                         .inflate(R.layout.success_item, viewGroup, false), listener);
 
-            case FAILED:
+            case FAILED_INT:
                 return new FailedViewHolder(LayoutInflater.from(viewGroup.getContext())
                         .inflate(R.layout.failed_item, viewGroup, false), listener);
 
-            case CONFLICT:
+            case CONFLICT_INT:
                 return new ConflictViewHolder(LayoutInflater.from(viewGroup.getContext())
                         .inflate(R.layout.conflict_item, viewGroup, false), listener);
 
@@ -63,19 +66,19 @@ public class DataAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int position) {
 
         switch (getItemViewType(position)) {
-            case SUCCESS:
+            case SUCCESS_INT:
                 itemView = viewHolder.itemView;
                 ((SuccessViewHolder) viewHolder).bind(mDataList.get(position));
                 setInAnimation(itemView, position);
                 break;
 
-            case FAILED:
+            case FAILED_INT:
                 itemView = viewHolder.itemView;
                 ((FailedViewHolder) viewHolder).bind(mDataList.get(position));
                 setInAnimation(itemView, position);
                 break;
 
-            case CONFLICT:
+            case CONFLICT_INT:
                 itemView = viewHolder.itemView;
                 ((ConflictViewHolder) viewHolder).bind(mDataList.get(position));
                 setInAnimation(itemView, position);
@@ -85,19 +88,19 @@ public class DataAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemViewType(int position) {
-        if (mDataList.get(position).getType().equalsIgnoreCase("Success"))
-            return SUCCESS;
+        if (mDataList.get(position).getType().equalsIgnoreCase(Constant.SUCCESS))
+            return SUCCESS_INT;
 
-        else if (mDataList.get(position).getType().equalsIgnoreCase("Failed"))
+        else if (mDataList.get(position).getType().equalsIgnoreCase(Constant.FAILED))
 
-            return FAILED;
+            return FAILED_INT;
 
-        else if (mDataList.get(position).getType().equalsIgnoreCase("Conflict"))
+        else if (mDataList.get(position).getType().equalsIgnoreCase(Constant.CONFLICT))
 
-            return CONFLICT;
+            return CONFLICT_INT;
 
         else
-            return SUCCESS;
+            return SUCCESS_INT;
     }
 
 

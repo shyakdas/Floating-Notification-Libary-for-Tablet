@@ -7,10 +7,15 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
+import com.example.floatingnotification.Constant;
 import com.example.floatingnotification.DataModel;
 import com.example.floatingnotification.FloatNotificationViewModel;
 
 import java.util.ArrayList;
+
+import static com.example.floatingnotification.Constant.CONFLICT;
+import static com.example.floatingnotification.Constant.FAILED;
+import static com.example.floatingnotification.Constant.SUCCESS;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,13 +29,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         dataModels = new ArrayList<>();
-        dataModels.add(new DataModel("1", "Selected user checked-in successfully to Meeting ID #34", "Success"));
-        dataModels.add(new DataModel("2", "Failed to checkIn meetings", "Failed"));
-        dataModels.add(new DataModel("3", "4 Meetings have been checked in successfully", "Conflict"));
-        dataModels.add(new DataModel("4", "Failed to checkIn meetings", "Failed"));
-        dataModels.add(new DataModel("5", "Selected user checked-in successfully to Meeting ID #34", "Success"));
-        dataModels.add(new DataModel("6", "Selected user checked-in successfully to Meeting ID #34", "Success"));
-        dataModels.add(new DataModel("7", "4 Meetings have been checked in successfully", "Conflict"));
+        dataModels.add(new DataModel("1", "Selected user checked-in successfully to Meeting ID #34", SUCCESS));
+        dataModels.add(new DataModel("2", "Failed to checkIn meetings", FAILED));
+        dataModels.add(new DataModel("3", "4 Meetings have been checked in successfully", CONFLICT));
+        dataModels.add(new DataModel("4", "Failed to checkIn meetings", FAILED));
+        dataModels.add(new DataModel("5", "Selected user checked-in successfully to Meeting ID #34", SUCCESS));
+        dataModels.add(new DataModel("6", "Selected user checked-in successfully to Meeting ID #34", SUCCESS));
+        dataModels.add(new DataModel("7", "4 Meetings have been checked in successfully", CONFLICT));
         position = 0;
         viewModel = ViewModelProviders.of(this).get(FloatNotificationViewModel.class);
         goToQueue();
