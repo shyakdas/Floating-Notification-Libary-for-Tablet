@@ -71,7 +71,7 @@ public class FloatingNotificationFragment extends Fragment implements OnCloseLis
 
     @Override
     public void onClose(int position) {
-        if (position < dataModelList.size()) {
+        if (position != -1 && position < dataModelList.size()) {
             DataModel dataModel = dataModelList.get(position);
             dataModelList.remove(dataModel);
             mDataAdapter.notifyItemRemoved(position);

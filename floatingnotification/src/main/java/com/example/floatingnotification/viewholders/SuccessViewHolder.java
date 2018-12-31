@@ -12,7 +12,7 @@ import com.example.floatingnotification.listener.OnCloseListener;
 
 public class SuccessViewHolder extends RecyclerView.ViewHolder {
 
-    private TextView mText;
+    private TextView mText, mCloseNotification;
     private CountDownTimer timer;
     private OnCloseListener onCloseListener;
 
@@ -20,6 +20,14 @@ public class SuccessViewHolder extends RecyclerView.ViewHolder {
         super(itemView);
         onCloseListener = listener;
         mText = itemView.findViewById(R.id.message_text);
+        mCloseNotification = itemView.findViewById(R.id.close_notification);
+        mCloseNotification.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                timer.onFinish();
+                onCloseListener.onClose(getAdapterPosition());
+            }
+        });
     }
 
     public void bind(DataModel dataModel) {
