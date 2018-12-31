@@ -12,11 +12,13 @@ import android.view.animation.AnimationUtils;
 import com.example.floatingnotification.DataModel;
 import com.example.floatingnotification.R;
 import com.example.floatingnotification.listener.OnCloseListener;
-import com.example.floatingnotification.viewholders.NotificationViewHolder;
+import com.example.floatingnotification.viewholders.ConflictViewHolder;
+import com.example.floatingnotification.viewholders.FailedViewHolder;
+import com.example.floatingnotification.viewholders.SuccessViewHolder;
 
 import java.util.ArrayList;
 
-public class DataAdapter extends RecyclerView.Adapter<NotificationViewHolder> {
+public class DataAdapter extends RecyclerView.Adapter {
 
     private static final String TAG = DataAdapter.class.getName();
     private Context mContext;
@@ -24,6 +26,9 @@ public class DataAdapter extends RecyclerView.Adapter<NotificationViewHolder> {
     private int lastPosition = -1;
     private OnCloseListener listener;
     private View itemView;
+    private static final int SUCCESS = 101;
+    private static final int FAILED = 102;
+    private static final int CONFLICT = 103;
 
     public DataAdapter(Context mContext, ArrayList<DataModel> dataModels, OnCloseListener itemListener) {
         this.mContext = mContext;
@@ -34,16 +39,65 @@ public class DataAdapter extends RecyclerView.Adapter<NotificationViewHolder> {
 
     @NonNull
     @Override
-    public NotificationViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        return new NotificationViewHolder(LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.success_item, viewGroup, false), listener);
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int itemType) {
+        switch (itemType) {
+            case SUCCESS:
+                return new SuccessViewHolder(LayoutInflater.from(viewGroup.getContext())
+                        .inflate(R.layout.success_item, viewGroup, false), listener);
+
+            case FAILED:
+                return new FailedViewHolder(LayoutInflater.from(viewGroup.getContext())
+                        .inflate(R.layout.failed_item, viewGroup, false), listener);
+
+            case CONFLICT:
+                return new ConflictViewHolder(LayoutInflater.from(viewGroup.getContext())
+                        .inflate(R.layout.conflict_item, viewGroup, false), listener);
+
+            default:
+                return new SuccessViewHolder(LayoutInflater.from(viewGroup.getContext())
+                        .inflate(R.layout.success_item, viewGroup, false), listener);
+        }
     }
 
     @Override
-    public void onBindViewHolder(@NonNull NotificationViewHolder notificationViewHolder, int position) {
-        itemView = notificationViewHolder.itemView;
-        notificationViewHolder.bind(mDataList.get(position));
-        setInAnimation(itemView, position);
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int position) {
+
+        switch (getItemViewType(position)) {
+            case SUCCESS:
+                itemView = viewHolder.itemView;
+                ((SuccessViewHolder) viewHolder).bind(mDataList.get(position));
+                setInAnimation(itemView, position);
+                break;
+
+            case FAILED:
+                itemView = viewHolder.itemView;
+                ((FailedViewHolder) viewHolder).bind(mDataList.get(position));
+                setInAnimation(itemView, position);
+                break;
+
+            case CONFLICT:
+                itemView = viewHolder.itemView;
+                ((ConflictViewHolder) viewHolder).bind(mDataList.get(position));
+                setInAnimation(itemView, position);
+                break;
+        }
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        if (mDataList.get(position).getType().equalsIgnoreCase("Success"))
+            return SUCCESS;
+
+        else if (mDataList.get(position).getType().equalsIgnoreCase("Failed"))
+
+            return FAILED;
+
+        else if (mDataList.get(position).getType().equalsIgnoreCase("Conflict"))
+
+            return CONFLICT;
+
+        else
+            return SUCCESS;
     }
 
 

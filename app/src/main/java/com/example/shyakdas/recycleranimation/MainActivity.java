@@ -25,12 +25,12 @@ public class MainActivity extends AppCompatActivity {
 
         dataModels = new ArrayList<>();
         dataModels.add(new DataModel("1", "Selected user checked-in successfully to Meeting ID #34", "Success"));
-        dataModels.add(new DataModel("2", "Selected user checked-in successfully to Meeting ID #34", "Success"));
-        dataModels.add(new DataModel("3", "Selected user checked-in successfully to Meeting ID #34", "Success"));
-        dataModels.add(new DataModel("4", "Selected user checked-in successfully to Meeting ID #34", "Success"));
+        dataModels.add(new DataModel("2", "Failed to checkIn meetings", "Failed"));
+        dataModels.add(new DataModel("3", "4 Meetings have been checked in successfully", "Conflict"));
+        dataModels.add(new DataModel("4", "Failed to checkIn meetings", "Failed"));
         dataModels.add(new DataModel("5", "Selected user checked-in successfully to Meeting ID #34", "Success"));
         dataModels.add(new DataModel("6", "Selected user checked-in successfully to Meeting ID #34", "Success"));
-        dataModels.add(new DataModel("7", "Selected user checked-in successfully to Meeting ID #34", "Success"));
+        dataModels.add(new DataModel("7", "4 Meetings have been checked in successfully", "Conflict"));
         position = 0;
         viewModel = ViewModelProviders.of(this).get(FloatNotificationViewModel.class);
         goToQueue();

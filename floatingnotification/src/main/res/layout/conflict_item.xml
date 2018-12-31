@@ -41,7 +41,7 @@
             android:text="Close"
             android:textColor="@android:color/black"
             android:textSize="12sp" />
-        
+
         <View
             android:id="@+id/view"
             android:layout_width="1dp"

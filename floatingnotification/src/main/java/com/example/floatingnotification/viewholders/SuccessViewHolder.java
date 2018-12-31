@@ -10,13 +10,13 @@ import com.example.floatingnotification.DataModel;
 import com.example.floatingnotification.R;
 import com.example.floatingnotification.listener.OnCloseListener;
 
-public class NotificationViewHolder extends RecyclerView.ViewHolder {
+public class SuccessViewHolder extends RecyclerView.ViewHolder {
 
     private TextView mText;
     private CountDownTimer timer;
     private OnCloseListener onCloseListener;
 
-    public NotificationViewHolder(@NonNull View itemView, OnCloseListener listener) {
+    public SuccessViewHolder(@NonNull View itemView, OnCloseListener listener) {
         super(itemView);
         onCloseListener = listener;
         mText = itemView.findViewById(R.id.message_text);
