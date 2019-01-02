@@ -32,7 +32,7 @@
 
         <RelativeLayout
             android:id="@+id/multiple_option"
-            android:layout_width="70dp"
+            android:layout_width="80dp"
             android:layout_height="match_parent"
             android:layout_alignParentEnd="true"
             android:background="#F8F8F8">
@@ -45,7 +45,8 @@
                 android:gravity="center"
                 android:text="@string/close"
                 android:textColor="@android:color/black"
-                android:textSize="13sp" />
+                android:textSize="12sp"
+                android:padding="5dp"/>
 
             <View
                 android:id="@+id/vertical_divider"
@@ -61,9 +62,11 @@
                 android:layout_below="@+id/vertical_divider"
                 android:drawableEnd="@drawable/drop_down"
                 android:gravity="center"
+                android:layout_centerHorizontal="true"
                 android:text="@string/detail"
                 android:textColor="@android:color/black"
-                android:textSize="13sp" />
+                android:textSize="12sp"
+                android:padding="7dp"/>
 
         </RelativeLayout>
 
@@ -74,7 +77,6 @@
             android:layout_toStartOf="@+id/multiple_option"
             android:background="#EBEBEB" />
     </RelativeLayout>
-
 
     <ImageView
         android:id="@+id/imageView"

@@ -1,10 +1,10 @@
 package com.example.floatingnotification.models;
 
-import com.example.floatingnotification.Constants;
+import com.example.floatingnotification.utils.Constants;
 
 import java.util.ArrayList;
 
-import static com.example.floatingnotification.Constants.SUCCESS;
+import static com.example.floatingnotification.utils.Constants.SUCCESS;
 
 public class MessageParser {
 

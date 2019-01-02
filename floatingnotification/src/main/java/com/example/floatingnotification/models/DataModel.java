@@ -1,12 +1,10 @@
 package com.example.floatingnotification.models;
 
-import com.example.floatingnotification.Constants;
+import com.example.floatingnotification.utils.Constants;
 import com.example.floatingnotification.R;
 
-import java.util.ArrayList;
-
-import static com.example.floatingnotification.Constants.FAILED;
-import static com.example.floatingnotification.Constants.SUCCESS;
+import static com.example.floatingnotification.utils.Constants.FAILED;
+import static com.example.floatingnotification.utils.Constants.SUCCESS;
 
 public class DataModel<T> {
     private int containerType;

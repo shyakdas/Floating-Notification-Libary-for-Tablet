@@ -11,9 +11,9 @@ import com.example.floatingnotification.models.DataModel;
 
 import java.util.ArrayList;
 
-import static com.example.floatingnotification.Constants.CONFLICT;
-import static com.example.floatingnotification.Constants.FAILED;
-import static com.example.floatingnotification.Constants.SUCCESS;
+import static com.example.floatingnotification.utils.Constants.CONFLICT;
+import static com.example.floatingnotification.utils.Constants.FAILED;
+import static com.example.floatingnotification.utils.Constants.SUCCESS;
 
 public class MainActivity extends AppCompatActivity {
 

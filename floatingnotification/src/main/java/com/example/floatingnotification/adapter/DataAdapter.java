@@ -18,8 +18,8 @@ import com.example.floatingnotification.viewholders.SingleNotificationViewHolder
 
 import java.util.ArrayList;
 
-import static com.example.floatingnotification.Constants.MULTIPLE;
-import static com.example.floatingnotification.Constants.SINGLE;
+import static com.example.floatingnotification.utils.Constants.MULTIPLE;
+import static com.example.floatingnotification.utils.Constants.SINGLE;
 
 public class DataAdapter extends RecyclerView.Adapter<NotificationViewHolder> {
 

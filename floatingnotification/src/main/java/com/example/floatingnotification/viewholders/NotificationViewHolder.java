@@ -14,10 +14,10 @@ import com.example.floatingnotification.models.DataModel;
 
 public abstract class NotificationViewHolder extends RecyclerView.ViewHolder {
 
-    protected ImageView mImageView;
-    protected TextView messageTextView;
-    protected CountDownTimer timer;
-    protected TextView mCloseNotification;
+    private ImageView mImageView;
+    private TextView messageTextView;
+    private static  CountDownTimer timer;
+    private TextView mCloseNotification;
     private OnCloseListener onCloseListener;
 
     public NotificationViewHolder(@NonNull View itemView, OnCloseListener listener) {
@@ -42,10 +42,11 @@ public abstract class NotificationViewHolder extends RecyclerView.ViewHolder {
         });
     }
 
-    protected void startTimer() {
+    public void startTimer() {
         timer = new CountDownTimer(6000, 6000) {
             @Override
             public void onTick(long millisUntilFinished) {
+
             }
 
             @Override
@@ -55,7 +56,7 @@ public abstract class NotificationViewHolder extends RecyclerView.ViewHolder {
         }.start();
     }
 
-    protected void stopTimer() {
+    public static void stopTimer() {
         if (timer != null) {
             timer.cancel();
         }

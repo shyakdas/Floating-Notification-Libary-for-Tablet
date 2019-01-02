@@ -1,4 +1,4 @@
-package com.example.floatingnotification;
+package com.example.floatingnotification.utils;
 
 import android.support.annotation.StringDef;
 

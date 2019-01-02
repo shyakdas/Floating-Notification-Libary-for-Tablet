@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">floatingnotification</string>
     <string name="close">Close</string>
-    <string name="detail">Detail</string>
+    <string name="detail">Details</string>
 </resources>
