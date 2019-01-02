@@ -1,23 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="5dp">
 
     <RelativeLayout
+        android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="5dp"
-        android:layout_marginBottom="5dp"
+        android:layout_marginBottom="10dp"
         android:background="@android:color/white"
-        android:elevation="2dp"
         android:gravity="center_vertical"
         android:paddingStart="30dp"
+        app:layout_constraintBottom_toTopOf="@+id/notification_item"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/message_text"
@@ -28,7 +31,7 @@
             android:layout_toStartOf="@+id/view"
             android:text="4 Meetings have been checked-in successfully"
             android:textColor="@android:color/black"
-            android:textSize="14sp" />
+            android:textSize="12sp" />
 
         <RelativeLayout
             android:id="@+id/multiple_option"
@@ -43,10 +46,10 @@
                 android:layout_height="match_parent"
                 android:layout_above="@+id/vertical_divider"
                 android:gravity="center"
+                android:padding="5dp"
                 android:text="@string/close"
                 android:textColor="@android:color/black"
-                android:textSize="12sp"
-                android:padding="5dp"/>
+                android:textSize="12sp" />
 
             <View
                 android:id="@+id/vertical_divider"
@@ -60,13 +63,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_below="@+id/vertical_divider"
+                android:layout_centerHorizontal="true"
                 android:drawableEnd="@drawable/drop_down"
                 android:gravity="center"
-                android:layout_centerHorizontal="true"
+                android:padding="7dp"
                 android:text="@string/detail"
                 android:textColor="@android:color/black"
-                android:textSize="12sp"
-                android:padding="7dp"/>
+                android:textSize="12sp" />
 
         </RelativeLayout>
 
@@ -83,10 +86,38 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
+        android:layout_marginTop="8dp"
         android:elevation="2dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/relativeLayout"
+        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/success" />
+        app:srcCompat="@drawable/success"
+        tools:layout_editor_absoluteX="3dp" />
+
+    <View
+        android:id="@+id/expand_view"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="5dp"
+        android:background="#EBEBEB"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <include
+        android:id="@+id/notification_item"
+        layout="@layout/notification_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="5dp"
+        android:visibility="visible"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/expand_view" />
 
 
 </android.support.constraint.ConstraintLayout>

@@ -27,12 +27,12 @@
             android:layout_toStartOf="@+id/view"
             android:text="Failed to checkIn meeting"
             android:textColor="@android:color/black"
-            android:textSize="14sp" />
+            android:textSize="12sp" />
 
         <TextView
             android:id="@+id/close_notification"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_alignParentEnd="true"
             android:layout_centerInParent="true"
             android:background="#FAFAFA	"
@@ -41,7 +41,7 @@
             android:paddingEnd="20dp"
             android:text="Close"
             android:textColor="@android:color/black"
-            android:textSize="13sp" />
+            android:textSize="12sp" />
 
         <View
             android:id="@+id/view"
