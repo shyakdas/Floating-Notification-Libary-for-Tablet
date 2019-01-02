@@ -25,7 +25,11 @@
             android:layout_centerInParent="true"
             android:layout_marginEnd="10dp"
             android:layout_toStartOf="@+id/view"
+            android:ellipsize="end"
+            android:lineSpacingExtra="2dp"
+            android:maxLines="2"
             android:text="Failed to checkIn meeting"
+
             android:textColor="@android:color/black"
             android:textSize="12sp" />
 
@@ -36,6 +40,7 @@
             android:layout_alignParentEnd="true"
             android:layout_centerInParent="true"
             android:background="#FAFAFA	"
+            android:foreground="?attr/selectableItemBackground"
             android:gravity="center"
             android:paddingStart="32dp"
             android:paddingEnd="20dp"
