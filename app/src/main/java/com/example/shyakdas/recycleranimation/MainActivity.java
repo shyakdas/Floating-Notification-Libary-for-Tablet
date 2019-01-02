@@ -26,12 +26,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         dataModels = new ArrayList<>();
+        ArrayList<DataModel<String>> childData = new ArrayList<>();
         dataModels.add(DataModel.singleMessage("Selected user checked-in successfully to Meeting ID #34", SUCCESS, ""));
         dataModels.add(DataModel.singleMessage("Failed to checkIn meetings", FAILED, ""));
-        dataModels.add(DataModel.singleMessage("4 Meetings have been checked in successfully", CONFLICT, ""));
+        dataModels.add(DataModel.singleMessage("4 Meetings have been checked in successfully", SUCCESS, ""));
         dataModels.add(DataModel.singleMessage("Failed to checkIn meetings", FAILED, ""));
-        dataModels.add(DataModel.singleMessage("Selected user checked-in successfully to Meeting ID #34", SUCCESS, ""));
-        dataModels.add(DataModel.singleMessage("Selected user checked-in successfully to Meeting ID #34", SUCCESS, ""));
+        childData.add(DataModel.singleMessage("Selected user checked-in successfully to Meeting ID #34", SUCCESS, ""));
+        childData.add(DataModel.singleMessage("Selected user checked-in successfully to Meeting ID #34", SUCCESS, ""));
+        dataModels.add(DataModel.multipleMessage("Checked in successfully", CONFLICT, childData));
         position = 0;
         viewModel = ViewModelProviders.of(this).get(FloatNotificationViewModel.class);
         goToQueue();

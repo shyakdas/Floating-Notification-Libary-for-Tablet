@@ -41,14 +41,14 @@ public class DataAdapter extends RecyclerView.Adapter<NotificationViewHolder> {
         switch (itemType) {
             case SINGLE:
                 return new SingleNotificationViewHolder(LayoutInflater.from(viewGroup.getContext())
-                        .inflate(R.layout.failed_item, viewGroup, false), listener);
+                        .inflate(R.layout.single_notification_item, viewGroup, false), listener);
             case MULTIPLE:
                 return new MultipleNotificationViewHolder(LayoutInflater.from(viewGroup.getContext())
-                        .inflate(R.layout.failed_item, viewGroup, false), listener);
+                        .inflate(R.layout.multiple_notification_item, viewGroup, false), listener);
 
             default:
                 return new SingleNotificationViewHolder(LayoutInflater.from(viewGroup.getContext())
-                        .inflate(R.layout.failed_item, viewGroup, false), listener);
+                        .inflate(R.layout.single_notification_item, viewGroup, false), listener);
         }
     }
 
