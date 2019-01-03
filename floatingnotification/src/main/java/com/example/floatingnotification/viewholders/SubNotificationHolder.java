@@ -21,7 +21,7 @@ public class SubNotificationHolder extends RecyclerView.ViewHolder {
     }
 
     public void bindView(NotificationItem notificationItem) {
-        mNotificationImage.setImageResource(notificationItem.getResId());
+        mNotificationImage.setImageResource(notificationItem.getSubResId());
         mNotificationText.setText(notificationItem.getMessage());
     }
 }
