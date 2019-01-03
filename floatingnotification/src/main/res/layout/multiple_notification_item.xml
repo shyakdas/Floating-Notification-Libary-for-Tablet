@@ -15,7 +15,7 @@
         android:layout_height="80dp"
         android:layout_marginStart="30dp"
         android:layout_marginTop="10dp"
-        android:background="@drawable/check"
+        android:background="@drawable/drawable_rectangle"
         android:layout_marginEnd="5dp"
         android:layout_marginBottom="10dp"
         android:gravity="center_vertical"

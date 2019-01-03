@@ -12,7 +12,7 @@
         android:layout_marginTop="5dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="5dp"
-        android:background="@drawable/check"
+        android:background="@drawable/drawable_rectangle"
         android:elevation="5dp"
         android:gravity="center_vertical"
         app:layout_constraintEnd_toEndOf="parent"
@@ -71,7 +71,7 @@
         android:layout_alignBaseline="@+id/content_layout"
         android:layout_marginStart="5dp"
         android:layout_marginTop="20dp"
-        android:background="@drawable/circle"
+        android:background="@drawable/drawable_circle"
         android:elevation="5dp"
         android:src="@drawable/failed" />
 
