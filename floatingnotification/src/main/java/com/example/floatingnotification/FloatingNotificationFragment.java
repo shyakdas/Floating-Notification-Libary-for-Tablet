@@ -57,7 +57,6 @@ public class FloatingNotificationFragment extends Fragment implements OnCloseLis
         }
     }
 
-
     private void initNotificationData() {
         floatNotificationViewModel.getModelMutableLiveData().observe(this, new Observer<NotificationItem>() {
             @Override

@@ -19,9 +19,6 @@ import com.example.floatingnotification.models.NotificationItem;
 
 import java.util.ArrayList;
 
-import static com.example.floatingnotification.utils.Constants.FAILED;
-import static com.example.floatingnotification.utils.Constants.SUCCESS;
-
 public class MultipleNotificationViewHolder extends NotificationViewHolder {
 
     private TextView mDetails;
@@ -32,7 +29,6 @@ public class MultipleNotificationViewHolder extends NotificationViewHolder {
     private boolean mIsViewExpanded = false;
     private SubNotificationAdapter mSubNotificationAdapter;
     private Context mContext;
-    private ArrayList<NotificationItem> tempData;
 
     public MultipleNotificationViewHolder(@NonNull View itemView, OnCloseListener listener, Context context) {
         super(itemView, listener);
@@ -43,7 +39,7 @@ public class MultipleNotificationViewHolder extends NotificationViewHolder {
     }
 
     @Override
-    public void bind(NotificationItem notificationItem) {
+    public void bind(final NotificationItem notificationItem) {
         super.bind(notificationItem);
         if (!isViewExpanded) {
             visibilityGone();
@@ -51,12 +47,12 @@ public class MultipleNotificationViewHolder extends NotificationViewHolder {
         mDetails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showDetails();
+                showDetails(notificationItem);
             }
         });
     }
 
-    private void showDetails() {
+    private void showDetails(NotificationItem<ArrayList<NotificationItem<String>>> notificationItem) {
         // Stop the timer, View will not auto cancel
         NotificationViewHolder.stopTimer();
         // If the originalHeight is 0 then find the height of the View being used
@@ -65,14 +61,14 @@ public class MultipleNotificationViewHolder extends NotificationViewHolder {
             originalHeight = itemView.getHeight();
         }
         if (!mIsViewExpanded) {
-            expandedChildView();
+            expandedChildView(notificationItem);
         } else {
             collapsedChildView();
         }
     }
 
-    private void expandedChildView() {
-        childAdapter();
+    private void expandedChildView(NotificationItem<ArrayList<NotificationItem<String>>> item) {
+        childAdapter(item.getData());
         mExpandRecyclerView.setVisibility(View.VISIBLE);
         mExpandBorderView.setVisibility(View.VISIBLE);
         // Set card layout margin in bottom
@@ -123,20 +119,11 @@ public class MultipleNotificationViewHolder extends NotificationViewHolder {
         mExpandRecyclerView.setEnabled(false);
     }
 
-    private void childAdapter() {
+    private void childAdapter(ArrayList<NotificationItem<String>> items) {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false);
         mExpandRecyclerView.setLayoutManager(linearLayoutManager);
         mExpandRecyclerView.setItemAnimator(new SlideInOutRightItemAnimator(mExpandRecyclerView));
-        mSubNotificationAdapter = new SubNotificationAdapter(getTempData());
+        mSubNotificationAdapter = new SubNotificationAdapter(items);
         mExpandRecyclerView.setAdapter(mSubNotificationAdapter);
-    }
-
-    private ArrayList<NotificationItem> getTempData() {
-        tempData = new ArrayList<>();
-        tempData.add(NotificationItem.singleMessage("Selected user checked-in successfully to Meeting ID #34", SUCCESS, ""));
-        tempData.add(NotificationItem.singleMessage("Failed to checkIn meetings", FAILED, ""));
-        tempData.add(NotificationItem.singleMessage("4 Meetings have been checked in successfully", SUCCESS, ""));
-        tempData.add(NotificationItem.singleMessage("Failed to checkIn meetings", FAILED, ""));
-        return tempData;
     }
 }

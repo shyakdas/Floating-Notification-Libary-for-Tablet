@@ -20,7 +20,7 @@ public class MessageParser {
             type = SUCCESS;
             isSuccessAvailable = true;
             for (String singleMessage : data.getSuccess_messages()) {
-                notificationItems.add(SubNotificationItem.singleMessage(singleMessage, Constants.SUCCESS, message));
+                notificationItems.add(NotificationItem.singleMessage(singleMessage, Constants.SUCCESS, message));
             }
         }
         if (!data.getError_messages().isEmpty()) {
@@ -32,15 +32,13 @@ public class MessageParser {
 
             for (String singleMessage : data.getError_messages()) {
                 if (isSuccessAvailable)
-                    errors.add(SubNotificationItem.singleMessage(singleMessage, Constants.CONFLICT, message));
+                    errors.add(NotificationItem.singleMessage(singleMessage, Constants.CONFLICT, message));
                 else {
-                    errors.add(SubNotificationItem.singleMessage(singleMessage, Constants.FAILED, message));
-
+                    errors.add(NotificationItem.singleMessage(singleMessage, Constants.FAILED, message));
                 }
             }
             notificationItems.addAll(0, errors);
         }
-
         return NotificationItem.multipleMessage(message, type, notificationItems);
     }
 }

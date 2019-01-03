@@ -44,7 +44,7 @@ public class NotificationITemAdapter extends RecyclerView.Adapter<NotificationVi
                         .inflate(R.layout.single_notification_item, viewGroup, false), listener);
             case MULTIPLE:
                 return new MultipleNotificationViewHolder(LayoutInflater.from(viewGroup.getContext())
-                        .inflate(R.layout.multiple_notification_item, viewGroup, false), listener,mContext);
+                        .inflate(R.layout.multiple_notification_item, viewGroup, false), listener, mContext);
 
             default:
                 return new SingleNotificationViewHolder(LayoutInflater.from(viewGroup.getContext())

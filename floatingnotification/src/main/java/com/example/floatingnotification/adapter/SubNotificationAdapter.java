@@ -13,9 +13,9 @@ import java.util.ArrayList;
 
 public class SubNotificationAdapter extends RecyclerView.Adapter<SubNotificationHolder> {
 
-    private ArrayList<NotificationItem> notificationItemArrayList;
+    private ArrayList<NotificationItem<String>> notificationItemArrayList;
 
-    public SubNotificationAdapter(ArrayList<NotificationItem> notificationItems) {
+    public SubNotificationAdapter(ArrayList<NotificationItem<String>> notificationItems) {
         this.notificationItemArrayList = notificationItems;
     }
 

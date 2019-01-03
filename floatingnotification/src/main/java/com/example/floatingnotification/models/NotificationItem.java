@@ -35,7 +35,6 @@ public class NotificationItem<T> {
         return new NotificationItem<>(Constants.MULTIPLE, message, type, dataModels);
     }
 
-
     public String getMessage() {
         return message;
     }
@@ -64,5 +63,14 @@ public class NotificationItem<T> {
             return R.drawable.notification_failed;
         else
             return R.drawable.notification_conflict;
+    }
+
+    public int getSubResId() {
+        if (type.equalsIgnoreCase(SUCCESS))
+            return R.drawable.sub_notification_success;
+        else if (type.equalsIgnoreCase(FAILED))
+            return R.drawable.notification_failed;
+        else
+            return R.drawable.sub_notification_conflict;
     }
 }
