@@ -7,7 +7,6 @@ import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
@@ -35,15 +34,13 @@ public class MultipleNotificationViewHolder extends NotificationViewHolder {
     private NotificationChildAdapter mNotificationChildAdapter;
     private Context mContext;
     private ArrayList<DataModel> tempData;
-    private CardView mCardLayout;
 
     public MultipleNotificationViewHolder(@NonNull View itemView, OnCloseListener listener, Context context) {
         super(itemView, listener);
         this.mContext = context;
         mDetails = itemView.findViewById(R.id.detail_text);
         mExpandRecyclerView = itemView.findViewById(R.id.recycler_view);
-        mExpandBorderView = itemView.findViewById(R.id.expand_view);
-        mCardLayout = itemView.findViewById(R.id.content_layout);
+        mExpandBorderView = itemView.findViewById(R.id.divider3);
     }
 
     @Override
@@ -57,12 +54,12 @@ public class MultipleNotificationViewHolder extends NotificationViewHolder {
         mDetails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                details();
+                showDetails();
             }
         });
     }
 
-    private void details() {
+    private void showDetails() {
         NotificationViewHolder.stopTimer();
         // If the originalHeight is 0 then find the height of the View being used
         // This would be the height of the cardView
@@ -76,7 +73,6 @@ public class MultipleNotificationViewHolder extends NotificationViewHolder {
             mExpandRecyclerView.setVisibility(View.VISIBLE);
             mExpandBorderView.setVisibility(View.VISIBLE);
             // Set card layout margin in bottom
-            setLayoutParams(0);
             mExpandRecyclerView.setEnabled(true);
             mIsViewExpanded = true;
             valueAnimator = ValueAnimator.ofInt(originalHeight, originalHeight + (int) (originalHeight * 2.0));
@@ -94,9 +90,8 @@ public class MultipleNotificationViewHolder extends NotificationViewHolder {
 
                 @Override
                 public void onAnimationEnd(Animation animation) {
-                    setLayoutParams(5);
-                    mExpandRecyclerView.setVisibility(View.INVISIBLE);
-                    mExpandBorderView.setVisibility(View.INVISIBLE);
+                    mExpandRecyclerView.setVisibility(View.GONE);
+                    mExpandBorderView.setVisibility(View.GONE);
                     mExpandRecyclerView.setEnabled(false);
                 }
 
@@ -110,20 +105,13 @@ public class MultipleNotificationViewHolder extends NotificationViewHolder {
         valueAnimator.setInterpolator(new AccelerateDecelerateInterpolator());
         valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             public void onAnimationUpdate(ValueAnimator animation) {
-                Integer value = (Integer) animation.getAnimatedValue();
-                itemView.getLayoutParams().height = value.intValue();
+                itemView.getLayoutParams().height = (Integer) animation.getAnimatedValue();
                 itemView.requestLayout();
             }
         });
         valueAnimator.start();
     }
 
-    public void setLayoutParams(int bottomMargin) {
-        ViewGroup.MarginLayoutParams layoutParams =
-                (ViewGroup.MarginLayoutParams) mCardLayout.getLayoutParams();
-        layoutParams.setMargins(0, 0, 0, bottomMargin);
-        mCardLayout.requestLayout();
-    }
 
     private void initAdapter() {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false);
@@ -133,7 +121,7 @@ public class MultipleNotificationViewHolder extends NotificationViewHolder {
         mExpandRecyclerView.setAdapter(mNotificationChildAdapter);
     }
 
-    public ArrayList<DataModel> getTempData() {
+    private ArrayList<DataModel> getTempData() {
         tempData = new ArrayList<>();
         tempData.add(DataModel.singleMessage("Selected user checked-in successfully to Meeting ID #34", SUCCESS, ""));
         tempData.add(DataModel.singleMessage("Failed to checkIn meetings", FAILED, ""));
