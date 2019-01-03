@@ -8,9 +8,9 @@ import java.lang.annotation.RetentionPolicy;
 public class Constants {
 
 
-    public static final String SUCCESS = "success";
-    public static final String FAILED = "failed";
-    public static final String CONFLICT = "conflict";
+    public static final String SUCCESS = "notification_success";
+    public static final String FAILED = "notification_failed";
+    public static final String CONFLICT = "notification_conflict";
 
     @StringDef({SUCCESS, FAILED, CONFLICT})
     @Retention(RetentionPolicy.SOURCE)

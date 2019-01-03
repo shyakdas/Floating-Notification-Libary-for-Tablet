@@ -3,7 +3,6 @@ package com.example.floatingnotification.viewholders;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.support.annotation.NonNull;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -13,10 +12,10 @@ import android.view.animation.Animation;
 import android.widget.TextView;
 
 import com.example.floatingnotification.R;
-import com.example.floatingnotification.adapter.NotificationChildAdapter;
+import com.example.floatingnotification.adapter.SubNotificationAdapter;
 import com.example.floatingnotification.animator.SlideInOutRightItemAnimator;
 import com.example.floatingnotification.listener.OnCloseListener;
-import com.example.floatingnotification.models.DataModel;
+import com.example.floatingnotification.models.NotificationItem;
 
 import java.util.ArrayList;
 
@@ -31,9 +30,9 @@ public class MultipleNotificationViewHolder extends NotificationViewHolder {
     private boolean isViewExpanded = false;
     private RecyclerView mExpandRecyclerView;
     private boolean mIsViewExpanded = false;
-    private NotificationChildAdapter mNotificationChildAdapter;
+    private SubNotificationAdapter mSubNotificationAdapter;
     private Context mContext;
-    private ArrayList<DataModel> tempData;
+    private ArrayList<NotificationItem> tempData;
 
     public MultipleNotificationViewHolder(@NonNull View itemView, OnCloseListener listener, Context context) {
         super(itemView, listener);
@@ -44,12 +43,10 @@ public class MultipleNotificationViewHolder extends NotificationViewHolder {
     }
 
     @Override
-    public void bind(DataModel dataModel) {
-        super.bind(dataModel);
+    public void bind(NotificationItem notificationItem) {
+        super.bind(notificationItem);
         if (!isViewExpanded) {
-            mExpandRecyclerView.setVisibility(View.GONE);
-            mExpandBorderView.setVisibility(View.GONE);
-            mExpandRecyclerView.setEnabled(false);
+            visibilityGone();
         }
         mDetails.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,47 +57,55 @@ public class MultipleNotificationViewHolder extends NotificationViewHolder {
     }
 
     private void showDetails() {
+        // Stop the timer, View will not auto cancel
         NotificationViewHolder.stopTimer();
         // If the originalHeight is 0 then find the height of the View being used
         // This would be the height of the cardView
         if (originalHeight == 0) {
             originalHeight = itemView.getHeight();
         }
-        // Declare a ValueAnimator object
-        ValueAnimator valueAnimator;
         if (!mIsViewExpanded) {
-            initAdapter();
-            mExpandRecyclerView.setVisibility(View.VISIBLE);
-            mExpandBorderView.setVisibility(View.VISIBLE);
-            // Set card layout margin in bottom
-            mExpandRecyclerView.setEnabled(true);
-            mIsViewExpanded = true;
-            valueAnimator = ValueAnimator.ofInt(originalHeight, originalHeight + (int) (originalHeight * 2.0));
-            // These values in this method can be changed to expand however much you like
+            expandedChildView();
         } else {
-            mIsViewExpanded = false;
-            valueAnimator = ValueAnimator.ofInt(originalHeight + (int) (originalHeight * 2.0), originalHeight);
-            Animation a = new AlphaAnimation(1.00f, 0.00f); // Fade out
-            a.setDuration(200);
-            a.setAnimationListener(new Animation.AnimationListener() {
-                @Override
-                public void onAnimationStart(Animation animation) {
-
-                }
-
-                @Override
-                public void onAnimationEnd(Animation animation) {
-                    mExpandRecyclerView.setVisibility(View.GONE);
-                    mExpandBorderView.setVisibility(View.GONE);
-                    mExpandRecyclerView.setEnabled(false);
-                }
-
-                @Override
-                public void onAnimationRepeat(Animation animation) {
-                }
-            });
-            mExpandRecyclerView.startAnimation(a);
+            collapsedChildView();
         }
+    }
+
+    private void expandedChildView() {
+        childAdapter();
+        mExpandRecyclerView.setVisibility(View.VISIBLE);
+        mExpandBorderView.setVisibility(View.VISIBLE);
+        // Set card layout margin in bottom
+        mExpandRecyclerView.setEnabled(true);
+        mIsViewExpanded = true;
+        ValueAnimator valueAnimator = ValueAnimator.ofInt(originalHeight, originalHeight + (int) (originalHeight * 2.0));
+        viewValueAnimator(valueAnimator);
+    }
+
+    private void collapsedChildView() {
+        mIsViewExpanded = false;
+        ValueAnimator valueAnimator = ValueAnimator.ofInt(originalHeight + (int) (originalHeight * 2.0), originalHeight);
+        Animation a = new AlphaAnimation(1.00f, 0.00f); // Fade out
+        a.setDuration(200);
+        a.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                visibilityGone();
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+            }
+        });
+        mExpandRecyclerView.startAnimation(a);
+        viewValueAnimator(valueAnimator);
+    }
+
+    private void viewValueAnimator(ValueAnimator valueAnimator) {
         valueAnimator.setDuration(200);
         valueAnimator.setInterpolator(new AccelerateDecelerateInterpolator());
         valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
@@ -112,21 +117,26 @@ public class MultipleNotificationViewHolder extends NotificationViewHolder {
         valueAnimator.start();
     }
 
+    private void visibilityGone() {
+        mExpandRecyclerView.setVisibility(View.GONE);
+        mExpandBorderView.setVisibility(View.GONE);
+        mExpandRecyclerView.setEnabled(false);
+    }
 
-    private void initAdapter() {
+    private void childAdapter() {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false);
         mExpandRecyclerView.setLayoutManager(linearLayoutManager);
         mExpandRecyclerView.setItemAnimator(new SlideInOutRightItemAnimator(mExpandRecyclerView));
-        mNotificationChildAdapter = new NotificationChildAdapter(getTempData());
-        mExpandRecyclerView.setAdapter(mNotificationChildAdapter);
+        mSubNotificationAdapter = new SubNotificationAdapter(getTempData());
+        mExpandRecyclerView.setAdapter(mSubNotificationAdapter);
     }
 
-    private ArrayList<DataModel> getTempData() {
+    private ArrayList<NotificationItem> getTempData() {
         tempData = new ArrayList<>();
-        tempData.add(DataModel.singleMessage("Selected user checked-in successfully to Meeting ID #34", SUCCESS, ""));
-        tempData.add(DataModel.singleMessage("Failed to checkIn meetings", FAILED, ""));
-        tempData.add(DataModel.singleMessage("4 Meetings have been checked in successfully", SUCCESS, ""));
-        tempData.add(DataModel.singleMessage("Failed to checkIn meetings", FAILED, ""));
+        tempData.add(NotificationItem.singleMessage("Selected user checked-in successfully to Meeting ID #34", SUCCESS, ""));
+        tempData.add(NotificationItem.singleMessage("Failed to checkIn meetings", FAILED, ""));
+        tempData.add(NotificationItem.singleMessage("4 Meetings have been checked in successfully", SUCCESS, ""));
+        tempData.add(NotificationItem.singleMessage("Failed to checkIn meetings", FAILED, ""));
         return tempData;
     }
 }

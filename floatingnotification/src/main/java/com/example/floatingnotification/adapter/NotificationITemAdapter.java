@@ -11,7 +11,7 @@ import android.view.animation.AnimationUtils;
 
 import com.example.floatingnotification.R;
 import com.example.floatingnotification.listener.OnCloseListener;
-import com.example.floatingnotification.models.DataModel;
+import com.example.floatingnotification.models.NotificationItem;
 import com.example.floatingnotification.viewholders.MultipleNotificationViewHolder;
 import com.example.floatingnotification.viewholders.NotificationViewHolder;
 import com.example.floatingnotification.viewholders.SingleNotificationViewHolder;
@@ -21,18 +21,18 @@ import java.util.ArrayList;
 import static com.example.floatingnotification.utils.Constants.MULTIPLE;
 import static com.example.floatingnotification.utils.Constants.SINGLE;
 
-public class DataAdapter extends RecyclerView.Adapter<NotificationViewHolder> {
+public class NotificationITemAdapter extends RecyclerView.Adapter<NotificationViewHolder> {
 
-    private static final String TAG = DataAdapter.class.getName();
+    private static final String TAG = NotificationITemAdapter.class.getName();
     private Context mContext;
-    private ArrayList<DataModel> mDataList;
+    private ArrayList<NotificationItem> mDataList;
     private int lastPosition = -1;
     private OnCloseListener listener;
 
-    public DataAdapter(Context mContext, ArrayList<DataModel> dataModels, OnCloseListener itemListener) {
+    public NotificationITemAdapter(Context mContext, ArrayList<NotificationItem> notificationItems, OnCloseListener itemListener) {
         this.mContext = mContext;
         this.listener = itemListener;
-        mDataList = dataModels;
+        mDataList = notificationItems;
     }
 
     @NonNull

@@ -6,33 +6,33 @@ import com.example.floatingnotification.R;
 import static com.example.floatingnotification.utils.Constants.FAILED;
 import static com.example.floatingnotification.utils.Constants.SUCCESS;
 
-public class DataModel<T> {
-    private int containerType;
-    private String message;
+public class NotificationItem<T> {
+    protected int containerType;
+    protected String message;
     @Constants.MessageType
-    private String type;
-    private T data;
+    protected String type;
+    protected T data;
 
 
-    private DataModel(int containerType, String message, String type) {
+    protected NotificationItem(int containerType, String message, String type) {
         this.containerType = containerType;
         this.message = message;
         this.type = type;
     }
 
-    private DataModel(int containerType, String message, String type, T data) {
+    protected NotificationItem(int containerType, String message, String type, T data) {
         this(containerType, message, type);
         this.data = data;
 
     }
 
-    public static <T> DataModel<T> singleMessage(String message, @Constants.MessageType String type, T data) {
-        return new DataModel<>(Constants.SINGLE, message, type, data);
+    public static <T> NotificationItem<T> singleMessage(String message, @Constants.MessageType String type, T data) {
+        return new NotificationItem<>(Constants.SINGLE, message, type, data);
     }
 
 
-    public static <T> DataModel<T> multipleMessage(String message, @Constants.MessageType String type, T dataModels) {
-        return new DataModel<>(Constants.MULTIPLE, message, type, dataModels);
+    public static <T> NotificationItem<T> multipleMessage(String message, @Constants.MessageType String type, T dataModels) {
+        return new NotificationItem<>(Constants.MULTIPLE, message, type, dataModels);
     }
 
 
@@ -59,10 +59,10 @@ public class DataModel<T> {
 
     public int getResId() {
         if (type.equalsIgnoreCase(SUCCESS))
-            return R.drawable.success;
+            return R.drawable.notification_success;
         else if (type.equalsIgnoreCase(FAILED))
-            return R.drawable.failed;
+            return R.drawable.notification_failed;
         else
-            return R.drawable.conflict;
+            return R.drawable.notification_conflict;
     }
 }

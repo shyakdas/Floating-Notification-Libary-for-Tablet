@@ -7,21 +7,21 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.floatingnotification.R;
-import com.example.floatingnotification.models.DataModel;
+import com.example.floatingnotification.models.NotificationItem;
 
-public class NotificationChildHolder extends RecyclerView.ViewHolder {
+public class SubNotificationHolder extends RecyclerView.ViewHolder {
 
     private ImageView mNotificationImage;
     private TextView mNotificationText;
 
-    public NotificationChildHolder(@NonNull View itemView) {
+    public SubNotificationHolder(@NonNull View itemView) {
         super(itemView);
         mNotificationText = itemView.findViewById(R.id.message_text);
         mNotificationImage = itemView.findViewById(R.id.imageView);
     }
 
-    public void bindView(DataModel dataModel) {
-        mNotificationImage.setImageResource(dataModel.getResId());
-        mNotificationText.setText(dataModel.getMessage());
+    public void bindView(NotificationItem notificationItem) {
+        mNotificationImage.setImageResource(notificationItem.getResId());
+        mNotificationText.setText(notificationItem.getMessage());
     }
 }

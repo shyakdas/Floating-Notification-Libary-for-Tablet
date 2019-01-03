@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.example.floatingnotification.R;
 import com.example.floatingnotification.listener.OnCloseListener;
-import com.example.floatingnotification.models.DataModel;
+import com.example.floatingnotification.models.NotificationItem;
 
 public abstract class NotificationViewHolder extends RecyclerView.ViewHolder {
 
@@ -29,9 +29,9 @@ public abstract class NotificationViewHolder extends RecyclerView.ViewHolder {
     }
 
     @CallSuper
-    public void bind(DataModel dataModel) {
-        mImageView.setImageResource(dataModel.getResId());
-        messageTextView.setText(dataModel.getMessage());
+    public void bind(NotificationItem notificationItem) {
+        mImageView.setImageResource(notificationItem.getResId());
+        messageTextView.setText(notificationItem.getMessage());
         startTimer();
         mCloseNotification.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -124,6 +124,6 @@
         android:layout_marginTop="20dp"
         android:background="@drawable/drawable_circle"
         android:elevation="5dp"
-        android:src="@drawable/conflict" />
+        android:src="@drawable/notification_conflict" />
 
 </RelativeLayout>

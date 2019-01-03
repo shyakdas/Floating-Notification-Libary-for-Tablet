@@ -12,18 +12,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.floatingnotification.adapter.DataAdapter;
+import com.example.floatingnotification.adapter.NotificationITemAdapter;
 import com.example.floatingnotification.animator.SlideInOutRightItemAnimator;
 import com.example.floatingnotification.listener.OnCloseListener;
-import com.example.floatingnotification.models.DataModel;
+import com.example.floatingnotification.models.NotificationItem;
 
 import java.util.ArrayList;
 
 public class FloatingNotificationFragment extends Fragment implements OnCloseListener {
 
     private RecyclerView mRecyclerView;
-    private DataAdapter mDataAdapter;
-    private ArrayList<DataModel> dataModelList;
+    private NotificationITemAdapter mNotificationITemAdapter;
+    private ArrayList<NotificationItem> notificationItemList;
     private FloatNotificationViewModel floatNotificationViewModel;
 
     @Nullable
@@ -36,15 +36,15 @@ public class FloatingNotificationFragment extends Fragment implements OnCloseLis
 
     private void initList(View view) {
         mRecyclerView = view.findViewById(R.id.recycler_view);
-        dataModelList = new ArrayList<>();
+        notificationItemList = new ArrayList<>();
     }
 
     private void initAdapter() {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         mRecyclerView.setLayoutManager(linearLayoutManager);
         mRecyclerView.setItemAnimator(new SlideInOutRightItemAnimator(mRecyclerView));
-        mDataAdapter = new DataAdapter(getContext(), dataModelList, this);
-        mRecyclerView.setAdapter(mDataAdapter);
+        mNotificationITemAdapter = new NotificationITemAdapter(getContext(), notificationItemList, this);
+        mRecyclerView.setAdapter(mNotificationITemAdapter);
     }
 
     @Override
@@ -59,12 +59,12 @@ public class FloatingNotificationFragment extends Fragment implements OnCloseLis
 
 
     private void initNotificationData() {
-        floatNotificationViewModel.getModelMutableLiveData().observe(this, new Observer<DataModel>() {
+        floatNotificationViewModel.getModelMutableLiveData().observe(this, new Observer<NotificationItem>() {
             @Override
-            public void onChanged(@Nullable DataModel dataModel) {
-                if (dataModel != null) {
-                    dataModelList.add(dataModel);
-                    mDataAdapter.notifyItemInserted(dataModelList.size() - 1);
+            public void onChanged(@Nullable NotificationItem notificationItem) {
+                if (notificationItem != null) {
+                    notificationItemList.add(notificationItem);
+                    mNotificationITemAdapter.notifyItemInserted(notificationItemList.size() - 1);
                 }
             }
         });
@@ -72,10 +72,10 @@ public class FloatingNotificationFragment extends Fragment implements OnCloseLis
 
     @Override
     public void onClose(int position) {
-        if (position != -1 && position < dataModelList.size()) {
-            DataModel dataModel = dataModelList.get(position);
-            dataModelList.remove(dataModel);
-            mDataAdapter.notifyItemRemoved(position);
+        if (position != -1 && position < notificationItemList.size()) {
+            NotificationItem notificationItem = notificationItemList.get(position);
+            notificationItemList.remove(notificationItem);
+            mNotificationITemAdapter.notifyItemRemoved(position);
             floatNotificationViewModel.onClose();
         }
     }

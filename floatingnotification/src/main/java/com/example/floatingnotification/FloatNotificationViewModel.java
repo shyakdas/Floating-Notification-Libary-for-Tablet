@@ -5,31 +5,31 @@ import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.MutableLiveData;
 import android.support.annotation.NonNull;
 
-import com.example.floatingnotification.models.DataModel;
+import com.example.floatingnotification.models.NotificationItem;
 
 import java.util.LinkedList;
 import java.util.Queue;
 
 public class FloatNotificationViewModel extends AndroidViewModel {
 
-    private Queue<DataModel> dataModelQueue;
-    private MutableLiveData<DataModel> modelMutableLiveData;
+    private Queue<NotificationItem> notificationItemQueue;
+    private MutableLiveData<NotificationItem> modelMutableLiveData;
     private final int CAPACITY = 3;
     private int count = 0;
     private static final Object LOCK = new Object();
 
     public FloatNotificationViewModel(@NonNull Application application) {
         super(application);
-        dataModelQueue = new LinkedList<>();
+        notificationItemQueue = new LinkedList<>();
         modelMutableLiveData = new MutableLiveData<>();
     }
 
-    public MutableLiveData<DataModel> getModelMutableLiveData() {
+    public MutableLiveData<NotificationItem> getModelMutableLiveData() {
         return modelMutableLiveData;
     }
 
-    public final void addNotifications(DataModel dataModel) {
-        dataModelQueue.add(dataModel);
+    public final void addNotifications(NotificationItem notificationItem) {
+        notificationItemQueue.add(notificationItem);
         if (count < CAPACITY)
             pushToList();
 
@@ -41,9 +41,9 @@ public class FloatNotificationViewModel extends AndroidViewModel {
     }
 
     private final void pushToList() {
-        if (!dataModelQueue.isEmpty()) {
+        if (!notificationItemQueue.isEmpty()) {
             count++;
-            DataModel firstModel = dataModelQueue.poll();
+            NotificationItem firstModel = notificationItemQueue.poll();
             modelMutableLiveData.setValue(firstModel);
         }
 
