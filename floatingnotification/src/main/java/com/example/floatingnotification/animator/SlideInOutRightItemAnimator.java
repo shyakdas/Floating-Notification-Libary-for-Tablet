@@ -15,7 +15,7 @@ public class SlideInOutRightItemAnimator extends BaseItemAnimator {
         final View view = holder.itemView;
         final ViewPropertyAnimatorCompat animation = ViewCompat.animate(view);
         mRemoveAnimations.add(holder);
-        animation.setDuration(200)
+        animation.setDuration(200L)
                 .alpha(0)
                 .translationX(+mRecyclerView.getLayoutManager().getWidth())
                 .setListener(new VpaListenerAdapter() {
@@ -47,7 +47,7 @@ public class SlideInOutRightItemAnimator extends BaseItemAnimator {
         mAddAnimations.add(holder);
         animation.translationX(0)
                 .alpha(1)
-                .setDuration(500)
+                .setDuration(500L)
                 .setListener(new VpaListenerAdapter() {
                     @Override
                     public void onAnimationStart(View view) {

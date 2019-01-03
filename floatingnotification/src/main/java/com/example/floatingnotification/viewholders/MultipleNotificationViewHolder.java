@@ -3,9 +3,11 @@ package com.example.floatingnotification.viewholders;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
@@ -33,6 +35,7 @@ public class MultipleNotificationViewHolder extends NotificationViewHolder {
     private NotificationChildAdapter mNotificationChildAdapter;
     private Context mContext;
     private ArrayList<DataModel> tempData;
+    private CardView mCardLayout;
 
     public MultipleNotificationViewHolder(@NonNull View itemView, OnCloseListener listener, Context context) {
         super(itemView, listener);
@@ -40,6 +43,7 @@ public class MultipleNotificationViewHolder extends NotificationViewHolder {
         mDetails = itemView.findViewById(R.id.detail_text);
         mExpandRecyclerView = itemView.findViewById(R.id.recycler_view);
         mExpandBorderView = itemView.findViewById(R.id.expand_view);
+        mCardLayout = itemView.findViewById(R.id.content_layout);
     }
 
     @Override
@@ -50,7 +54,6 @@ public class MultipleNotificationViewHolder extends NotificationViewHolder {
             mExpandBorderView.setVisibility(View.GONE);
             mExpandRecyclerView.setEnabled(false);
         }
-
         mDetails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -72,6 +75,8 @@ public class MultipleNotificationViewHolder extends NotificationViewHolder {
             initAdapter();
             mExpandRecyclerView.setVisibility(View.VISIBLE);
             mExpandBorderView.setVisibility(View.VISIBLE);
+            // Set card layout margin in bottom
+            setLayoutParams(0);
             mExpandRecyclerView.setEnabled(true);
             mIsViewExpanded = true;
             valueAnimator = ValueAnimator.ofInt(originalHeight, originalHeight + (int) (originalHeight * 2.0));
@@ -89,6 +94,7 @@ public class MultipleNotificationViewHolder extends NotificationViewHolder {
 
                 @Override
                 public void onAnimationEnd(Animation animation) {
+                    setLayoutParams(5);
                     mExpandRecyclerView.setVisibility(View.INVISIBLE);
                     mExpandBorderView.setVisibility(View.INVISIBLE);
                     mExpandRecyclerView.setEnabled(false);
@@ -96,7 +102,6 @@ public class MultipleNotificationViewHolder extends NotificationViewHolder {
 
                 @Override
                 public void onAnimationRepeat(Animation animation) {
-
                 }
             });
             mExpandRecyclerView.startAnimation(a);
@@ -111,6 +116,13 @@ public class MultipleNotificationViewHolder extends NotificationViewHolder {
             }
         });
         valueAnimator.start();
+    }
+
+    public void setLayoutParams(int bottomMargin) {
+        ViewGroup.MarginLayoutParams layoutParams =
+                (ViewGroup.MarginLayoutParams) mCardLayout.getLayoutParams();
+        layoutParams.setMargins(0, 0, 0, bottomMargin);
+        mCardLayout.requestLayout();
     }
 
     private void initAdapter() {
