@@ -3,36 +3,35 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="10dp"
-    android:layout_marginBottom="5dp"
+    android:layout_marginTop="@dimen/margin_10"
+    android:layout_marginBottom="@dimen/margin_5"
     android:background="@android:color/white">
 
     <TextView
         android:id="@+id/message_text"
-        android:layout_width="0dp"
+        android:layout_width="@dimen/width_0"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginStart="@dimen/margin_12"
+        android:layout_marginEnd="@dimen/margin_16"
         android:ellipsize="end"
         android:gravity="center_vertical"
         android:maxLines="1"
-        android:text="Failed to checkIn meeting"
-        android:textColor="#808080"
-        android:textSize="12sp"
+        android:text="@string/failed_to_checkIn_meeting"
+        android:textColor="@color/light_text_color"
+        android:textSize="@dimen/text_12"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/imageView"
-        app:layout_constraintTop_toTopOf="parent"
-
-        />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="16dp"
-        android:layout_height="16dp"
-        android:layout_marginStart="12dp"
+        android:layout_width="@dimen/width_16"
+        android:layout_height="@dimen/width_16"
+        android:layout_marginStart="@dimen/margin_12"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/notification_failed" />
+
 </android.support.constraint.ConstraintLayout>
