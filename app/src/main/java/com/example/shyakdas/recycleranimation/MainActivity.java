@@ -7,7 +7,6 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
 import com.example.floatingnotification.FloatNotificationViewModel;
-import com.example.floatingnotification.models.MessageParser;
 import com.example.floatingnotification.models.NotificationItem;
 
 import java.util.ArrayList;
