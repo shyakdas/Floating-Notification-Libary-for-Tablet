@@ -5,8 +5,6 @@ import android.support.v4.view.ViewPropertyAnimatorCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import com.example.floatingnotification.animator.BaseItemAnimator;
-
 public class SlideInOutRightItemAnimator extends BaseItemAnimator {
 
     public SlideInOutRightItemAnimator(RecyclerView recyclerView) {
@@ -17,7 +15,7 @@ public class SlideInOutRightItemAnimator extends BaseItemAnimator {
         final View view = holder.itemView;
         final ViewPropertyAnimatorCompat animation = ViewCompat.animate(view);
         mRemoveAnimations.add(holder);
-        animation.setDuration(getRemoveDuration())
+        animation.setDuration(200)
                 .alpha(0)
                 .translationX(+mRecyclerView.getLayoutManager().getWidth())
                 .setListener(new VpaListenerAdapter() {
@@ -49,7 +47,7 @@ public class SlideInOutRightItemAnimator extends BaseItemAnimator {
         mAddAnimations.add(holder);
         animation.translationX(0)
                 .alpha(1)
-                .setDuration(getAddDuration())
+                .setDuration(500)
                 .setListener(new VpaListenerAdapter() {
                     @Override
                     public void onAnimationStart(View view) {
