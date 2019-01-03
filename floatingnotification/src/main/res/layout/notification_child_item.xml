@@ -11,6 +11,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
+        android:layout_marginEnd="8dp"
         android:text="Failed to checkIn meeting"
         android:textColor="#808080"
         android:textSize="11sp"
@@ -27,5 +28,4 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/failed" />
-
 </android.support.constraint.ConstraintLayout>

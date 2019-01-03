@@ -12,7 +12,6 @@ import android.view.animation.Animation;
 import android.widget.TextView;
 
 import com.example.floatingnotification.R;
-import com.example.floatingnotification.adapter.DataAdapter;
 import com.example.floatingnotification.adapter.NotificationChildAdapter;
 import com.example.floatingnotification.animator.SlideInOutRightItemAnimator;
 import com.example.floatingnotification.listener.OnCloseListener;
@@ -20,7 +19,6 @@ import com.example.floatingnotification.models.DataModel;
 
 import java.util.ArrayList;
 
-import static com.example.floatingnotification.utils.Constants.CONFLICT;
 import static com.example.floatingnotification.utils.Constants.FAILED;
 import static com.example.floatingnotification.utils.Constants.SUCCESS;
 
@@ -124,16 +122,11 @@ public class MultipleNotificationViewHolder extends NotificationViewHolder {
     }
 
     public ArrayList<DataModel> getTempData() {
-        ArrayList<DataModel<String>> childData = new ArrayList<>();
         tempData = new ArrayList<>();
         tempData.add(DataModel.singleMessage("Selected user checked-in successfully to Meeting ID #34", SUCCESS, ""));
         tempData.add(DataModel.singleMessage("Failed to checkIn meetings", FAILED, ""));
         tempData.add(DataModel.singleMessage("4 Meetings have been checked in successfully", SUCCESS, ""));
         tempData.add(DataModel.singleMessage("Failed to checkIn meetings", FAILED, ""));
-        childData.add(DataModel.singleMessage("Selected user checked-in successfully to Meeting ID #34", SUCCESS, ""));
-        childData.add(DataModel.singleMessage("Selected user checked-in successfully to Meeting ID #34", SUCCESS, ""));
-        tempData.add(DataModel.multipleMessage("Checked in successfully", CONFLICT, childData));
-
         return tempData;
     }
 }

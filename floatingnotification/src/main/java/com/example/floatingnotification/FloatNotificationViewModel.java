@@ -3,7 +3,6 @@ package com.example.floatingnotification;
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.MutableLiveData;
-import android.os.CountDownTimer;
 import android.support.annotation.NonNull;
 
 import com.example.floatingnotification.models.DataModel;
