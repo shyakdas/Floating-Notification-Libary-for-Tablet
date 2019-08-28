@@ -29,8 +29,6 @@ public class MainActivity extends AppCompatActivity {
         ArrayList<NotificationItem<String>> childData = new ArrayList<>();
         notificationItems.add(NotificationItem.singleMessage("Selected user checked-in successfully to Meeting ID #34", SUCCESS, ""));
         notificationItems.add(NotificationItem.singleMessage("Failed to checkIn meetings", FAILED, ""));
-        notificationItems.add(NotificationItem.singleMessage("4 Meetings have been checked in successfully", SUCCESS, ""));
-        notificationItems.add(NotificationItem.singleMessage("Failed to checkIn meetings", FAILED, ""));
         notificationItems.add(NotificationItem.multipleMessage("Checked in successfully", CONFLICT, childData));
         childData.add(NotificationItem.singleMessage("1. Selected user checked-in successfully to Meeting ID #34", SUCCESS, ""));
         childData.add(NotificationItem.singleMessage("2. Selected user checked-in successfully to Meeting ID #34", SUCCESS, ""));
@@ -65,6 +63,8 @@ public class MainActivity extends AppCompatActivity {
         childData.add(NotificationItem.singleMessage("31.Selected user checked-in successfully to Meeting ID #34", FAILED, ""));
         childData.add(NotificationItem.singleMessage("32.Selected user checked-in successfully to Meeting ID #34", FAILED, ""));
         childData.add(NotificationItem.singleMessage("33.Selected user checked-in successfully to Meeting ID #34", FAILED, ""));
+        notificationItems.add(NotificationItem.singleMessage("4 Meetings have been checked in successfully", SUCCESS, ""));
+        notificationItems.add(NotificationItem.singleMessage("Failed to checkIn meetings", FAILED, ""));
         position = 0;
         viewModel = ViewModelProviders.of(this).get(FloatNotificationViewModel.class);
         goToQueue();

@@ -81,7 +81,7 @@ public class MultipleNotificationViewHolder extends NotificationViewHolder {
 
     private void collapsedChildView() {
         mIsViewExpanded = false;
-        ValueAnimator valueAnimator = ValueAnimator.ofInt(originalHeight + (int) (originalHeight * 2.0), originalHeight);
+        //ValueAnimator valueAnimator = ValueAnimator.ofInt(originalHeight + (int) (originalHeight * 2.0), originalHeight);
         Animation a = new AlphaAnimation(1.00f, 0.00f); // Fade out
         a.setDuration(200);
         a.setAnimationListener(new Animation.AnimationListener() {
@@ -99,7 +99,7 @@ public class MultipleNotificationViewHolder extends NotificationViewHolder {
             }
         });
         mExpandRecyclerView.startAnimation(a);
-        viewValueAnimator(valueAnimator);
+       // viewValueAnimator(valueAnimator);
     }
 
     private void viewValueAnimator(ValueAnimator valueAnimator) {
