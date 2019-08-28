@@ -5,6 +5,7 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.AlphaAnimation;
@@ -74,8 +75,8 @@ public class MultipleNotificationViewHolder extends NotificationViewHolder {
         // Set card layout margin in bottom
         mExpandRecyclerView.setEnabled(true);
         mIsViewExpanded = true;
-        ValueAnimator valueAnimator = ValueAnimator.ofInt(originalHeight, originalHeight + (int) (originalHeight * 2.0));
-        viewValueAnimator(valueAnimator);
+//        ValueAnimator valueAnimator = ValueAnimator.ofInt(originalHeight, originalHeight + (int) (originalHeight * 2.0));
+//        viewValueAnimator(valueAnimator);
     }
 
     private void collapsedChildView() {
@@ -125,5 +126,29 @@ public class MultipleNotificationViewHolder extends NotificationViewHolder {
         mExpandRecyclerView.setItemAnimator(new SlideInOutRightItemAnimator(mExpandRecyclerView));
         mSubNotificationAdapter = new SubNotificationAdapter(items);
         mExpandRecyclerView.setAdapter(mSubNotificationAdapter);
+        RecyclerView.OnItemTouchListener mScrollTouchListener = new RecyclerView.OnItemTouchListener() {
+            @Override
+            public boolean onInterceptTouchEvent(@NonNull RecyclerView rv, MotionEvent e) {
+                int action = e.getAction();
+                switch (action) {
+                    case MotionEvent.ACTION_MOVE:
+                        rv.getParent().requestDisallowInterceptTouchEvent(true);
+                        break;
+                }
+                return false;
+            }
+
+            @Override
+            public void onTouchEvent(@NonNull RecyclerView rv, @NonNull MotionEvent e) {
+
+            }
+
+            @Override
+            public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
+
+            }
+        };
+
+        mExpandRecyclerView.addOnItemTouchListener(mScrollTouchListener);
     }
 }
