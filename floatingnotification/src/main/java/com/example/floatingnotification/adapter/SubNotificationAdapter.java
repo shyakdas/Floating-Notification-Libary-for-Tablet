@@ -1,9 +1,10 @@
 package com.example.floatingnotification.adapter;
 
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.floatingnotification.R;
 import com.example.floatingnotification.models.NotificationItem;

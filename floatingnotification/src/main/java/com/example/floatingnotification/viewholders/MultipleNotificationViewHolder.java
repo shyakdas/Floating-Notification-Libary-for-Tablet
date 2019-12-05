@@ -2,15 +2,16 @@ package com.example.floatingnotification.viewholders;
 
 import android.animation.ValueAnimator;
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.floatingnotification.R;
 import com.example.floatingnotification.adapter.SubNotificationAdapter;
@@ -99,7 +100,7 @@ public class MultipleNotificationViewHolder extends NotificationViewHolder {
             }
         });
         mExpandRecyclerView.startAnimation(a);
-       // viewValueAnimator(valueAnimator);
+        // viewValueAnimator(valueAnimator);
     }
 
     private void viewValueAnimator(ValueAnimator valueAnimator) {

@@ -1,12 +1,13 @@
 package com.example.floatingnotification.viewholders;
 
 import android.os.CountDownTimer;
-import android.support.annotation.CallSuper;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.annotation.CallSuper;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.floatingnotification.R;
 import com.example.floatingnotification.listener.OnCloseListener;
@@ -14,9 +15,9 @@ import com.example.floatingnotification.models.NotificationItem;
 
 public abstract class NotificationViewHolder extends RecyclerView.ViewHolder {
 
+    private static CountDownTimer timer;
     private ImageView mImageView;
     private TextView messageTextView;
-    private static  CountDownTimer timer;
     private TextView mCloseNotification;
     private OnCloseListener onCloseListener;
 
@@ -26,6 +27,12 @@ public abstract class NotificationViewHolder extends RecyclerView.ViewHolder {
         messageTextView = itemView.findViewById(R.id.message_text);
         mCloseNotification = itemView.findViewById(R.id.close_notification);
         onCloseListener = listener;
+    }
+
+    public static void stopTimer() {
+        if (timer != null) {
+            timer.cancel();
+        }
     }
 
     @CallSuper
@@ -54,12 +61,6 @@ public abstract class NotificationViewHolder extends RecyclerView.ViewHolder {
                 close();
             }
         }.start();
-    }
-
-    public static void stopTimer() {
-        if (timer != null) {
-            timer.cancel();
-        }
     }
 
     protected void close() {

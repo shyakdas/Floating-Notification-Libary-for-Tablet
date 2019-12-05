@@ -1,9 +1,10 @@
 package com.example.floatingnotification;
 
 import android.app.Application;
-import android.arch.lifecycle.AndroidViewModel;
-import android.arch.lifecycle.MutableLiveData;
-import android.support.annotation.NonNull;
+
+import androidx.annotation.NonNull;
+import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.MutableLiveData;
 
 import com.example.floatingnotification.models.NotificationItem;
 
@@ -12,11 +13,11 @@ import java.util.Queue;
 
 public class FloatNotificationViewModel extends AndroidViewModel {
 
+    private static final Object LOCK = new Object();
+    private final int CAPACITY = 3;
     private Queue<NotificationItem> notificationItemQueue;
     private MutableLiveData<NotificationItem> modelMutableLiveData;
-    private final int CAPACITY = 3;
     private int count = 0;
-    private static final Object LOCK = new Object();
 
     public FloatNotificationViewModel(@NonNull Application application) {
         super(application);

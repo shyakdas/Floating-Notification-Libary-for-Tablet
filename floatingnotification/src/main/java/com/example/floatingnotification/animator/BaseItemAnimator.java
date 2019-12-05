@@ -1,91 +1,43 @@
 package com.example.floatingnotification.animator;
 
-import android.support.v4.view.ViewCompat;
-import android.support.v4.view.ViewPropertyAnimatorCompat;
-import android.support.v4.view.ViewPropertyAnimatorListener;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.SimpleItemAnimator;
 import android.view.View;
+
+import androidx.core.view.ViewCompat;
+import androidx.core.view.ViewPropertyAnimatorCompat;
+import androidx.core.view.ViewPropertyAnimatorListener;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.SimpleItemAnimator;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public abstract class BaseItemAnimator extends SimpleItemAnimator {
 
-    /**
-     * RecyclerView
-     */
-    protected RecyclerView mRecyclerView;
-
-    //------------------------------------------------------------
-    // Constructor
-    //------------------------------------------------------------
-
-    public BaseItemAnimator(RecyclerView recyclerView) {
-        mRecyclerView = recyclerView;
-    }
-
     //------------------------------------------------------------
     // Default Item Animator
     //------------------------------------------------------------
     private static final boolean DEBUG = false;
 
-    private ArrayList<RecyclerView.ViewHolder> mPendingRemovals = new ArrayList<>();
-    private ArrayList<RecyclerView.ViewHolder> mPendingAdditions = new ArrayList<>();
-    private ArrayList<MoveInfo> mPendingMoves = new ArrayList<>();
-    private ArrayList<ChangeInfo> mPendingChanges = new ArrayList<>();
-
-    private ArrayList<ArrayList<RecyclerView.ViewHolder>> mAdditionsList = new ArrayList<>();
-    private ArrayList<ArrayList<MoveInfo>> mMovesList = new ArrayList<>();
-    private ArrayList<ArrayList<ChangeInfo>> mChangesList = new ArrayList<>();
-
+    //------------------------------------------------------------
+    // Constructor
+    //------------------------------------------------------------
+    /**
+     * RecyclerView
+     */
+    protected RecyclerView mRecyclerView;
     protected ArrayList<RecyclerView.ViewHolder> mAddAnimations = new ArrayList<>();
     protected ArrayList<RecyclerView.ViewHolder> mMoveAnimations = new ArrayList<>();
     protected ArrayList<RecyclerView.ViewHolder> mRemoveAnimations = new ArrayList<>();
     protected ArrayList<RecyclerView.ViewHolder> mChangeAnimations = new ArrayList<>();
-
-    private static class MoveInfo {
-        public RecyclerView.ViewHolder holder;
-        public int fromX, fromY, toX, toY;
-
-        private MoveInfo(RecyclerView.ViewHolder holder, int fromX, int fromY, int toX, int toY) {
-            this.holder = holder;
-            this.fromX = fromX;
-            this.fromY = fromY;
-            this.toX = toX;
-            this.toY = toY;
-        }
-    }
-
-    private static class ChangeInfo {
-        public RecyclerView.ViewHolder oldHolder, newHolder;
-        public int fromX, fromY, toX, toY;
-
-        private ChangeInfo(RecyclerView.ViewHolder oldHolder, RecyclerView.ViewHolder newHolder) {
-            this.oldHolder = oldHolder;
-            this.newHolder = newHolder;
-        }
-
-        private ChangeInfo(RecyclerView.ViewHolder oldHolder, RecyclerView.ViewHolder newHolder,
-                           int fromX, int fromY, int toX, int toY) {
-            this(oldHolder, newHolder);
-            this.fromX = fromX;
-            this.fromY = fromY;
-            this.toX = toX;
-            this.toY = toY;
-        }
-
-        @Override
-        public String toString() {
-            return "ChangeInfo{" +
-                    "oldHolder=" + oldHolder +
-                    ", newHolder=" + newHolder +
-                    ", fromX=" + fromX +
-                    ", fromY=" + fromY +
-                    ", toX=" + toX +
-                    ", toY=" + toY +
-                    '}';
-        }
+    private ArrayList<RecyclerView.ViewHolder> mPendingRemovals = new ArrayList<>();
+    private ArrayList<RecyclerView.ViewHolder> mPendingAdditions = new ArrayList<>();
+    private ArrayList<MoveInfo> mPendingMoves = new ArrayList<>();
+    private ArrayList<ChangeInfo> mPendingChanges = new ArrayList<>();
+    private ArrayList<ArrayList<RecyclerView.ViewHolder>> mAdditionsList = new ArrayList<>();
+    private ArrayList<ArrayList<MoveInfo>> mMovesList = new ArrayList<>();
+    private ArrayList<ArrayList<ChangeInfo>> mChangesList = new ArrayList<>();
+    public BaseItemAnimator(RecyclerView recyclerView) {
+        mRecyclerView = recyclerView;
     }
 
     @Override
@@ -222,7 +174,6 @@ public abstract class BaseItemAnimator extends SimpleItemAnimator {
         mPendingMoves.add(new MoveInfo(holder, fromX, fromY, toX, toY));
         return true;
     }
-
 
     private void animateMoveImpl(final RecyclerView.ViewHolder holder, int fromX, int fromY, int toX, int toY) {
         final View view = holder.itemView;
@@ -471,7 +422,7 @@ public abstract class BaseItemAnimator extends SimpleItemAnimator {
     }
 
     private void resetAnimation(RecyclerView.ViewHolder holder) {
-       // AnimatorCompatHelper.clearInterpolator(holder.itemView);
+        // AnimatorCompatHelper.clearInterpolator(holder.itemView);
         endAnimation(holder);
     }
 
@@ -593,6 +544,49 @@ public abstract class BaseItemAnimator extends SimpleItemAnimator {
         }
     }
 
+    private static class MoveInfo {
+        public RecyclerView.ViewHolder holder;
+        public int fromX, fromY, toX, toY;
+
+        private MoveInfo(RecyclerView.ViewHolder holder, int fromX, int fromY, int toX, int toY) {
+            this.holder = holder;
+            this.fromX = fromX;
+            this.fromY = fromY;
+            this.toX = toX;
+            this.toY = toY;
+        }
+    }
+
+    private static class ChangeInfo {
+        public RecyclerView.ViewHolder oldHolder, newHolder;
+        public int fromX, fromY, toX, toY;
+
+        private ChangeInfo(RecyclerView.ViewHolder oldHolder, RecyclerView.ViewHolder newHolder) {
+            this.oldHolder = oldHolder;
+            this.newHolder = newHolder;
+        }
+
+        private ChangeInfo(RecyclerView.ViewHolder oldHolder, RecyclerView.ViewHolder newHolder,
+                           int fromX, int fromY, int toX, int toY) {
+            this(oldHolder, newHolder);
+            this.fromX = fromX;
+            this.fromY = fromY;
+            this.toX = toX;
+            this.toY = toY;
+        }
+
+        @Override
+        public String toString() {
+            return "ChangeInfo{" +
+                    "oldHolder=" + oldHolder +
+                    ", newHolder=" + newHolder +
+                    ", fromX=" + fromX +
+                    ", fromY=" + fromY +
+                    ", toX=" + toX +
+                    ", toY=" + toY +
+                    '}';
+        }
+    }
 
     protected static class VpaListenerAdapter implements ViewPropertyAnimatorListener {
         @Override

@@ -1,10 +1,11 @@
 package com.example.shyakdas.recycleranimation;
 
-import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProviders;
 
 import com.example.floatingnotification.FloatNotificationViewModel;
 import com.example.floatingnotification.models.NotificationItem;

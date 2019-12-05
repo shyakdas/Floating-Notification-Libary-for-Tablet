@@ -1,7 +1,8 @@
 package com.example.floatingnotification.viewholders;
 
-import android.support.annotation.NonNull;
 import android.view.View;
+
+import androidx.annotation.NonNull;
 
 import com.example.floatingnotification.listener.OnCloseListener;
 

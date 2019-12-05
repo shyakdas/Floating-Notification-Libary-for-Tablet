@@ -1,7 +1,7 @@
 package com.example.floatingnotification.models;
 
-import com.example.floatingnotification.utils.Constants;
 import com.example.floatingnotification.R;
+import com.example.floatingnotification.utils.Constants;
 
 import static com.example.floatingnotification.utils.Constants.FAILED;
 import static com.example.floatingnotification.utils.Constants.SUCCESS;
