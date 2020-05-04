@@ -19,7 +19,7 @@ class FloatingNotificationFragmentKt : Fragment(), OnCloseListener {
     private lateinit var mRecyclerView: RecyclerView
     private lateinit var mNotificationITemAdapter: NotificationITemAdapter
     private lateinit var notificationItemList: ArrayList<NotificationItem<*>>
-    private lateinit var floatNotificationViewModel: FloatNotificationViewModel
+    private lateinit var floatNotificationViewModel: FloatNotificationViewModelKt
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -36,7 +36,7 @@ class FloatingNotificationFragmentKt : Fragment(), OnCloseListener {
 
     private fun initViewModel() {
         floatNotificationViewModel = ViewModelProvider(activity!!, defaultViewModelProviderFactory)
-                .get(FloatNotificationViewModel::class.java)
+                .get(FloatNotificationViewModelKt::class.java)
     }
 
     private fun initList(view: View) {

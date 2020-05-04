@@ -7,7 +7,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
 
-import com.example.floatingnotification.FloatNotificationViewModel;
+import com.example.floatingnotification.FloatNotificationViewModelKt;
 import com.example.floatingnotification.models.NotificationItem;
 
 import java.util.ArrayList;
@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ArrayList<NotificationItem> notificationItems;
     private int position;
-    private FloatNotificationViewModel viewModel;
+    private FloatNotificationViewModelKt viewModel;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
         notificationItems.add(NotificationItem.singleMessage("4 Meetings have been checked in successfully", SUCCESS, ""));
         notificationItems.add(NotificationItem.singleMessage("Failed to checkIn meetings", FAILED, ""));
         position = 0;
-        viewModel = ViewModelProviders.of(this).get(FloatNotificationViewModel.class);
+        viewModel = ViewModelProviders.of(this).get(FloatNotificationViewModelKt.class);
         goToQueue();
     }
 
