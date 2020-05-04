@@ -15,11 +15,11 @@ import com.example.floatingnotification.listener.OnCloseListener
 import com.example.floatingnotification.models.NotificationItem
 
 
-class FloatingNotificationFragmentKt : Fragment(), OnCloseListener {
+class FloatingNotificationFragment : Fragment(), OnCloseListener {
     private lateinit var mRecyclerView: RecyclerView
     private lateinit var mNotificationITemAdapter: NotificationITemAdapter
     private lateinit var notificationItemList: ArrayList<NotificationItem<*>>
-    private lateinit var floatNotificationViewModel: FloatNotificationViewModelKt
+    private lateinit var floatNotificationViewModel: FloatNotificationViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -36,7 +36,7 @@ class FloatingNotificationFragmentKt : Fragment(), OnCloseListener {
 
     private fun initViewModel() {
         floatNotificationViewModel = ViewModelProvider(activity!!, defaultViewModelProviderFactory)
-                .get(FloatNotificationViewModelKt::class.java)
+                .get(FloatNotificationViewModel::class.java)
     }
 
     private fun initList(view: View) {

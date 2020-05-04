@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import com.example.floatingnotification.models.NotificationItem
 import java.util.*
 
-class FloatNotificationViewModelKt : ViewModel() {
+class FloatNotificationViewModel : ViewModel() {
     private val TOTAL_CAPACITY = 3
     private val notificationItemQueue: Queue<NotificationItem<*>>? = LinkedList()
     val modelMutableLiveData = MutableLiveData<NotificationItem<*>>()

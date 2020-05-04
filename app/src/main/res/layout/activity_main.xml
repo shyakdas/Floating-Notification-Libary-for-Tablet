@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/notification_fragment"
-        android:name="com.example.floatingnotification.FloatingNotificationFragmentKt"
+        android:name="com.example.floatingnotification.FloatingNotificationFragment"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
