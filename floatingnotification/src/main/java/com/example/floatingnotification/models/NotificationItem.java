@@ -4,12 +4,11 @@ import com.example.floatingnotification.R;
 import com.example.floatingnotification.utils.FloatingNotificationConstants;
 
 public class NotificationItem<T> {
-    protected int containerType;
-    protected String message;
+    private int containerType;
+    private String message;
     @FloatingNotificationConstants.Companion.MessageType
-    protected String type;
-    protected T data;
-
+    private String type;
+    private T data;
 
     protected NotificationItem(int containerType, String message, String type) {
         this.containerType = containerType;
