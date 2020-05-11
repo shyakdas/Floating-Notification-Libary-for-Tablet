@@ -48,7 +48,7 @@ class FloatingNotificationFragment : Fragment(), OnCloseListener {
         val linearLayoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         mRecyclerView.layoutManager = linearLayoutManager
         mRecyclerView.itemAnimator = SlideInOutRightItemAnimator(mRecyclerView)
-        mNotificationITemAdapter = NotificationITemAdapter(context, notificationItemList, this)
+        mNotificationITemAdapter = NotificationITemAdapter(context!!, notificationItemList, this)
         mRecyclerView.adapter = mNotificationITemAdapter
     }
 
