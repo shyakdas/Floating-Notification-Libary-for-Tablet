@@ -8,13 +8,15 @@ import com.example.floatingnotification.listener.OnCloseListener
 import com.example.floatingnotification.models.NotificationItem
 import kotlinx.android.synthetic.main.multiple_notification_item.view.*
 
-abstract class NotificationViewHolderKt(itemView: View, var onCloseListener: OnCloseListener)
+abstract class NotificationViewHolder(itemView: View, var onCloseListener: OnCloseListener)
     : RecyclerView.ViewHolder(itemView) {
 
-    private var timer: CountDownTimer? = null
+    companion object {
+        private var timer: CountDownTimer? = null
 
-    open fun stopTimer() {
-        timer?.cancel()
+        fun stopTimer() {
+            timer?.cancel()
+        }
     }
 
     open fun startTimer() {
