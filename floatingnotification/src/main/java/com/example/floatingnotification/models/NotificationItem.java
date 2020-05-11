@@ -1,15 +1,12 @@
 package com.example.floatingnotification.models;
 
 import com.example.floatingnotification.R;
-import com.example.floatingnotification.utils.Constants;
-
-import static com.example.floatingnotification.utils.Constants.FAILED;
-import static com.example.floatingnotification.utils.Constants.SUCCESS;
+import com.example.floatingnotification.utils.FloatingNotificationConstants;
 
 public class NotificationItem<T> {
     protected int containerType;
     protected String message;
-    @Constants.MessageType
+    @FloatingNotificationConstants.Companion.MessageType
     protected String type;
     protected T data;
 
@@ -26,13 +23,19 @@ public class NotificationItem<T> {
 
     }
 
-    public static <T> NotificationItem<T> singleMessage(String message, @Constants.MessageType String type, T data) {
-        return new NotificationItem<>(Constants.SINGLE, message, type, data);
+    public static <T> NotificationItem<T> singleMessage(String message,
+                                                        @FloatingNotificationConstants
+                                                                .Companion.MessageType String type,
+                                                        T data) {
+        return new NotificationItem<>(FloatingNotificationConstants.SINGLE, message, type, data);
     }
 
 
-    public static <T> NotificationItem<T> multipleMessage(String message, @Constants.MessageType String type, T dataModels) {
-        return new NotificationItem<>(Constants.MULTIPLE, message, type, dataModels);
+    public static <T> NotificationItem<T> multipleMessage(String message,
+                                                          @FloatingNotificationConstants
+                                                                  .Companion.MessageType
+                                                                  String type, T dataModels) {
+        return new NotificationItem<>(FloatingNotificationConstants.MULTIPLE, message, type, dataModels);
     }
 
     public String getMessage() {
@@ -57,18 +60,18 @@ public class NotificationItem<T> {
     }
 
     public int getResId() {
-        if (type.equalsIgnoreCase(SUCCESS))
+        if (type.equalsIgnoreCase(FloatingNotificationConstants.SUCCESS))
             return R.drawable.notification_success;
-        else if (type.equalsIgnoreCase(FAILED))
+        else if (type.equalsIgnoreCase(FloatingNotificationConstants.FAILED))
             return R.drawable.notification_failed;
         else
             return R.drawable.notification_conflict;
     }
 
     public int getSubResId() {
-        if (type.equalsIgnoreCase(SUCCESS))
+        if (type.equalsIgnoreCase(FloatingNotificationConstants.SUCCESS))
             return R.drawable.sub_notification_success;
-        else if (type.equalsIgnoreCase(FAILED))
+        else if (type.equalsIgnoreCase(FloatingNotificationConstants.FAILED))
             return R.drawable.notification_failed;
         else
             return R.drawable.sub_notification_conflict;

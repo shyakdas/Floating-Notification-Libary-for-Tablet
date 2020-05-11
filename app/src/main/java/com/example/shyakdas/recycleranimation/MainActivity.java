@@ -12,9 +12,9 @@ import com.example.floatingnotification.models.NotificationItem;
 
 import java.util.ArrayList;
 
-import static com.example.floatingnotification.utils.Constants.CONFLICT;
-import static com.example.floatingnotification.utils.Constants.FAILED;
-import static com.example.floatingnotification.utils.Constants.SUCCESS;
+import static com.example.floatingnotification.utils.FloatingNotificationConstants.CONFLICT;
+import static com.example.floatingnotification.utils.FloatingNotificationConstants.FAILED;
+import static com.example.floatingnotification.utils.FloatingNotificationConstants.SUCCESS;
 
 public class MainActivity extends AppCompatActivity {
 
