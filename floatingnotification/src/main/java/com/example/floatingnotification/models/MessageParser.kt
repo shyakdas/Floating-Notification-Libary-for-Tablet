@@ -7,7 +7,7 @@ class MessageParser {
     companion object {
         fun addSingleMessage(message: String,
                              @FloatingNotificationConstants.Companion.MessageType type: String?): NotificationItem<String> {
-            return NotificationItem.singleMessage(message, type, message)
+            return NotificationItem.singleMessage(message, type!!, message)
         }
 
         fun addMultipleMessage(data: ConflictData, message: String): NotificationItem<ArrayList<NotificationItem<String>>> {
@@ -34,7 +34,7 @@ class MessageParser {
                 }
                 notificationItems.addAll(0, errors)
             }
-            return NotificationItem.multipleMessage(message, type, notificationItems)
+            return NotificationItem.multipleMessage(message, type!!, notificationItems)
         }
     }
 }

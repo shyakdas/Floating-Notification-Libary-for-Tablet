@@ -1,10 +1,8 @@
 package com.example.floatingnotification.viewholders
 
-import android.animation.ValueAnimator
 import android.content.Context
 import android.view.MotionEvent
 import android.view.View
-import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.animation.AlphaAnimation
 import android.view.animation.Animation
 import android.view.animation.Animation.AnimationListener
@@ -43,7 +41,7 @@ class MultipleNotificationViewHolder(itemView: View, onCloseListener: OnCloseLis
     }
 
     private fun expandedChildView(item: NotificationItem<*>) {
-        childAdapter(item.data)
+        childAdapter(item.data!!)
         itemView.recycler_view.visibility = View.VISIBLE
         itemView.divider3.visibility = View.VISIBLE
         itemView.recycler_view.isEnabled = true
@@ -63,16 +61,6 @@ class MultipleNotificationViewHolder(itemView: View, onCloseListener: OnCloseLis
             override fun onAnimationRepeat(animation: Animation) {}
         })
         itemView.recycler_view.startAnimation(a)
-    }
-
-    private fun viewValueAnimator(valueAnimator: ValueAnimator) {
-        valueAnimator.duration = 200
-        valueAnimator.interpolator = AccelerateDecelerateInterpolator()
-        valueAnimator.addUpdateListener { animation ->
-            itemView.layoutParams.height = (animation.animatedValue as Int)
-            itemView.requestLayout()
-        }
-        valueAnimator.start()
     }
 
     private fun visibilityGone() {
