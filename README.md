@@ -1,4 +1,5 @@
 # FloatingNotification - A notification library for Android
+![FloatingNotification](demo/banner.jpg)
 
 ## Sample
 ![notification](demo/newgif.gif)
