@@ -2,7 +2,7 @@
 
 ## Sample
 
-https://github.com/shyakdas/FloatingNotificationLibaryForTablet/blob/master/newgif.gif
+(newgif.gif)
 
 ### Overview of FloatingNotification library
 * Floating notification is designed for Tablet and Phone.
