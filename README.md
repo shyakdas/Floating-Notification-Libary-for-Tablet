@@ -1,8 +1,7 @@
 # FloatingNotification - A notification library for Android
 
 ## Sample
-
-(newgif.gif)
+![notification](demo/newgif.gif)
 
 ### Overview of FloatingNotification library
 * Floating notification is designed for Tablet and Phone.
