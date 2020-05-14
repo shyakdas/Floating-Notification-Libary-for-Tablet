@@ -1,4 +1,5 @@
 # FloatingNotification - A notification library for Android
+![FloatingNotification](demo/banner.jpg)
 
 ## Sample
 ![notification](demo/newgif.gif)
@@ -35,13 +36,9 @@ Add Data into Queue
 
 ```
 private fun goToQueue() {
-        initData() // Simple get the list of Data
         object : CountDownTimer(10000, 1000) {
             override fun onTick(millisUntilFinished: Long) {
-                if (position < notificationItems!!.size) {
                     viewModel!!.addNotifications(notificationItems!![position]) // Here NotiicationItems is a list of data item, Add notification will add the list of data.
-                }
-                position++
             }
 
             override fun onFinish() {}
